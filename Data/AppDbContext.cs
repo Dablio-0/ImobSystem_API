@@ -6,8 +6,12 @@ namespace ImobSystem_API.Data
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        override protected void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseSqlite("Data Source=databaseStudent-CRUD.sqlite");
+            optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
+
+            base.OnConfiguring(optionsBuilder);
         }
 
         public DbSet<User> Users { get; set; }
