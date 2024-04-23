@@ -12,12 +12,19 @@ namespace ImobSystem_API.Models
         private string Description;
         private string ValueAgreement;
         private uint NumInstallments;
-        private string[] PaymentGuarantee;
+        private bool Status;
         private DateTime CreatedAt;
         private DateTime UpdateAt;
         private DateTime InitDateAgreement;
         private DateTime PeriodAgreement;
         private DateTime FinalDateAgreement;
+
+        /* Section of Relationships */
+        // Agreement - House (One to One)
+        private House House;
+
+        // Agreement - Tenant (Many to Many)
+        private ICollection<Tenant> Tenants = new List<Tenant>();
 
         // constructor
         public Agreement(string owner, string tenant, string description, string valueAgreement, uint numInstallments, DateTime updatedAt, DateTime initDateAgreement, DateTime finalDateAgreement)
@@ -27,7 +34,7 @@ namespace ImobSystem_API.Models
             Description = description;
             ValueAgreement = valueAgreement;
             NumInstallments = numInstallments.ToString() == "" ? 0 : numInstallments;
-            PaymentGuarantee = new string[] { };
+            Status = false;
             CreatedAt = DateTime.Now;
             UpdateAt = updatedAt;
             InitDateAgreement = initDateAgreement;
@@ -101,14 +108,14 @@ namespace ImobSystem_API.Models
             NumInstallments = numInstallments;
         }
 
-        public string[] GetPaymentGuarantee()
+        public bool GetStatus()
         {
-            return this.PaymentGuarantee;
+            return this.Status;
         }
 
-        public void SetPaymentGuarantee(string[] paymentGuarantee)
+        public void SetStatus(bool status)
         {
-            PaymentGuarantee = paymentGuarantee;
+            Status = status;
         }
 
         // Get the date and time when the agreement was created
@@ -156,6 +163,30 @@ namespace ImobSystem_API.Models
         {
             TimeSpan period = finalDateAgreement - initDateAgreement;
             PeriodAgreement = Convert.ToDateTime(period);
+        }
+
+        /* Gets & Sets of Relationships */
+
+        // Agreement - House (One to One)
+        public House GetHouse()
+        {
+            return House;
+        }
+
+        public void SetHouse(House house)
+        {
+            House = house;
+        }
+
+        // Agreement - Tenant (Many to Many)
+        public ICollection<Tenant> GetTenants()
+        {
+            return Tenants;
+        }
+
+        public void SetTenants(ICollection<Tenant> tenants)
+        {
+            Tenants = tenants;
         }
     }
 }
