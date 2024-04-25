@@ -6,6 +6,7 @@ namespace ImobSystem_API.Models
 {
     public class Agreement
     {
+        #region Properties
         private uint Id;
         private string Owner;
         private string Tenant;
@@ -18,15 +19,17 @@ namespace ImobSystem_API.Models
         private DateTime InitDateAgreement;
         private DateTime PeriodAgreement;
         private DateTime FinalDateAgreement;
+        #endregion
 
-        /* Section of Relationships */
+        #region Section of Relationships 
         // Agreement - House (One to One)
         private House House;
 
         // Agreement - Tenant (Many to Many)
         private ICollection<Tenant> Tenants = new List<Tenant>();
+        #endregion
 
-        // constructor
+        #region Constructor
         public Agreement(string owner, string tenant, string description, string valueAgreement, uint numInstallments, DateTime updatedAt, DateTime initDateAgreement, DateTime finalDateAgreement)
         {
             Owner = owner;
@@ -47,7 +50,9 @@ namespace ImobSystem_API.Models
             }
             else PeriodAgreement = Convert.ToDateTime("00:00:00");
         }
+        #endregion
 
+        #region Get & Set of Properties
         public uint GetId()
         {
             return this.Id;
@@ -117,8 +122,9 @@ namespace ImobSystem_API.Models
         {
             Status = status;
         }
+        #endregion
 
-        // Get the date and time when the agreement was created
+        #region Get the date and time when the agreement was created
         public DateTime GetCreatedAt()
         {
             return this.CreatedAt;
@@ -164,8 +170,9 @@ namespace ImobSystem_API.Models
             TimeSpan period = finalDateAgreement - initDateAgreement;
             PeriodAgreement = Convert.ToDateTime(period);
         }
+        #endregion
 
-        /* Gets & Sets of Relationships */
+        #region Gets & Sets of Relationships 
 
         // Agreement - House (One to One)
         public House GetHouse()
@@ -188,5 +195,6 @@ namespace ImobSystem_API.Models
         {
             Tenants = tenants;
         }
+        #endregion
     }
 }

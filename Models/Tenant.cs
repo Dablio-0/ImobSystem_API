@@ -2,6 +2,7 @@
 {
     public class Tenant
     {
+        #region Properties
         private uint Id;
         private string Name;
         private string Email;
@@ -9,12 +10,14 @@
         private string CPF;
         private DateTime CreatedAt;
         private DateTime UpdatedAt;
+        #endregion
 
-        /* Section of Relationships */
-        // Tenant - Agreement (Many to Many)
+        #region  Section of Relationships
+        //Tenant - Agreement (Many to Many)
         private ICollection<Agreement> Agreements = new List<Agreement>();
+        #endregion
 
-        // constructor
+        #region Constructor
         public Tenant(string name, string email, string phone, string cpf)
         {
             Name = name;
@@ -24,7 +27,9 @@
             CreatedAt = DateTime.Now;
             UpdatedAt = DateTime.Now;
         }
+        #endregion
 
+        #region Get & Set of Properties
         public uint GetId()
         {
             return this.Id;
@@ -95,8 +100,9 @@
         {
             UpdatedAt = updatedAt;
         }
+        #endregion
 
-        /* Gets & Sets of Relationships */
+        #region Gets & Sets of Relationships
         // Tenant - House (Many to Many)
         public ICollection<Agreement> GetAgreements()
         {
@@ -107,5 +113,6 @@
         {
             Agreements = agreements;
         }
+        #endregion
     }
 }

@@ -3,26 +3,32 @@ namespace ImobSystem_API.Models
 {
     public class House
     {
+        #region Properties
         private uint Id;
         private string Type;
         private string Address;
         private string ZipCode;
+        #endregion
 
-        /* Section of Relationships */
+        #region Section of Relationships
 
         // House - Agreement (One to One)
         private Agreement Agreement;
 
         // House - Owner (Many to Many)
         private ICollection<Owner> Owners = new List<Owner>();
+        #endregion
 
+        #region Constructor
         public House(uint id, string address, string zipCode)
         {
             Id = id;
             Address = address;
             ZipCode = zipCode;
         }
+        #endregion
 
+        #region Get & Set of Properties
         public uint GetId()
         {
             return Id;
@@ -62,8 +68,9 @@ namespace ImobSystem_API.Models
         {
             ZipCode = zipCode;
         }
+        #endregion
 
-        /* Gets & Sets of Relationships */
+        #region Gets & Sets of Relationships
 
         // House - Agreement (One to One)
         public Agreement GetAgreement()
@@ -86,5 +93,6 @@ namespace ImobSystem_API.Models
         {
             Owners = owners;
         }
+        #endregion
     }
 }

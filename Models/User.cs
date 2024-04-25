@@ -2,6 +2,7 @@
 {
     public class User
     {
+        #region Properties
         private uint Id;
         private string Name;
         private string Email;
@@ -9,8 +10,9 @@
         private DateOnly Age;
         private DateTime CreatedAt;
         private DateTime UpdatedAt;
+        #endregion
 
-        // constructor
+        #region Constructor
         public User(string name, string email, string password, DateOnly age)
         {
             Name = name;
@@ -19,7 +21,9 @@
             Age = age;
             CreatedAt = DateTime.Now;
         }
+        #endregion
 
+        #region Get & Set of Properties
         public uint GetId()
         {
             return this.Id;
@@ -69,8 +73,9 @@
         {
             Age = age;
         }
+        #endregion
 
-        // Get the date and time when the user was created
+        #region Get the date and time when the user was created
         public DateTime GetCreatedAt()
         {
             return this.CreatedAt;
@@ -85,5 +90,6 @@
         {
             UpdatedAt = updatedAt;
         }
+        #endregion
     }
 }
