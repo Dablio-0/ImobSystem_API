@@ -1,3 +1,5 @@
+using ImobSystem_API.Controllers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,6 +10,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.MapTenantEndpoint();
+app.MapOwnerEndpoint();
+app.MapUserEndpoint();
+app.MapHouseEndpoint();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
