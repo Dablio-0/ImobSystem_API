@@ -3,11 +3,11 @@
     public record class UpdateAgreementRequest
     (
         uint id,
-        string Owner,
-        string Tenant,
-        string Description,
-        string ValueAgreement,
-        uint NumInstallments,
-        bool Status
+        string owner,
+        string tenant,
+        string description,
+        string valueAgreement,
+        uint numInstallments,
+        bool status
     );
 }

@@ -34,8 +34,8 @@ namespace ImobSystem_API.Data
 
             // Agreement & House (One to One)
             modelBuilder.Entity<House>()
-                .HasOne(h => h.getAgreement())
-                .WithOne(a => a.getHouse())
+                .HasOne(h => h.Agreement)
+                .WithOne(a => a.House)
                 .HasForeignKey<House>(h => h.id);
 
             /**
@@ -44,14 +44,14 @@ namespace ImobSystem_API.Data
 
             // House & Onwer (Many to Many)
             modelBuilder.Entity<House>()
-                .HasMany(h => h.getOwners())
-                .WithMany(o => o.getHouses())
+                .HasMany(h => h.Owners)
+                .WithMany(o => o.Houses)
                 .UsingEntity(j => j.ToTable("HouseOwner"));
 
             // Agreement & Tenant (Many to Many)
             modelBuilder.Entity<Agreement>()
-                .HasMany(a => a.getTenants())
-                .WithMany(t => t.GetAgreements())
+                .HasMany(a => a.Tenants)
+                .WithMany(t => t.Agreements)
                 .UsingEntity(j => j.ToTable("AgreementTenant"));
 
             base.OnModelCreating(modelBuilder);

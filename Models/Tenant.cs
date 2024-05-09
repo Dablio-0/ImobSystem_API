@@ -15,7 +15,7 @@
 
         #region  Section of Relationships
         //Tenant - Agreement (Many to Many)
-        private ICollection<Agreement> Agreements = new List<Agreement>();
+        public ICollection<Agreement> Agreements = new List<Agreement>();
         #endregion
 
         #region Constructor
@@ -99,19 +99,6 @@
         public void setUpdatedAt(DateTime updatedAt)
         {
             this.updatedAt = updatedAt;
-        }
-        #endregion
-
-        #region Gets & Sets of Relationships
-        // Tenant - House (Many to Many)
-        public ICollection<Agreement> GetAgreements()
-        {
-            return Agreements;
-        }
-
-        public void SetAgreements(ICollection<Agreement> agreements)
-        {
-            Agreements = agreements;
         }
         #endregion
     }

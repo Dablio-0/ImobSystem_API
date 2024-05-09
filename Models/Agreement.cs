@@ -23,10 +23,10 @@ namespace ImobSystem_API.Models
 
         #region Section of Relationships 
         // Agreement - House (One to One)
-        private House House;
+        public House House;
 
         // Agreement - Tenant (Many to Many)
-        private ICollection<Tenant> Tenants = new List<Tenant>();
+        public ICollection<Tenant> Tenants = new List<Tenant>();
         #endregion
 
         #region Constructor
@@ -159,31 +159,6 @@ namespace ImobSystem_API.Models
         {
             TimeSpan period = finalDateAgreement - initDateAgreement;
             this.periodAgreement = Convert.ToDateTime(period);
-        }
-        #endregion
-
-        #region Gets & sets of Relationships 
-
-        // Agreement - House (One to One)
-        public House getHouse()
-        {
-            return House;
-        }
-
-        public void setHouse(House house)
-        {
-            House = house;
-        }
-
-        // Agreement - Tenant (Many to Many)
-        public ICollection<Tenant> getTenants()
-        {
-            return Tenants;
-        }
-
-        public void setTenants(ICollection<Tenant> tenants)
-        {
-            Tenants = tenants;
         }
         #endregion
     }

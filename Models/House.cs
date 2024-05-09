@@ -14,10 +14,10 @@ namespace ImobSystem_API.Models
         #region Section of Relationships
 
         // House - Agreement (One to One)
-        private Agreement Agreement;
+        public Agreement Agreement;
 
         // House - Owner (Many to Many)
-        private ICollection<Owner> Owners = new List<Owner>();
+        public ICollection<Owner> Owners = new List<Owner>();
         #endregion
 
         #region Constructor
@@ -69,31 +69,6 @@ namespace ImobSystem_API.Models
         public void setZipCode(string zipCode)
         {
             this.zipCode = zipCode;
-        }
-        #endregion
-
-        #region Gets & Sets of Relationships
-
-        // House - Agreement (One to One)
-        public Agreement getAgreement()
-        {
-            return Agreement;
-        }
-
-        public void setAgreement(Agreement agreement)
-        {
-            Agreement = agreement;
-        }
-
-        // House - Owner (Many to Many)
-        public ICollection<Owner> getOwners()
-        {
-            return Owners;
-        }
-
-        public void setOwners(ICollection<Owner> owners)
-        {
-            Owners = owners;
         }
         #endregion
     }

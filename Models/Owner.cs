@@ -15,7 +15,7 @@
 
         #region Section of Relationships 
         // Owner - House (Many to Many)
-        private ICollection<House> Houses = new List<House>();
+        public ICollection<House> Houses = new List<House>();
         #endregion
 
         #region Constructor
@@ -100,19 +100,6 @@
         {
             this.updatedAt = updatedAt;
         }
-        #endregion
-
-        #region Gets & Sets of Relationships
-        // Owner - House (Many to Many)
-        public ICollection<House> getHouses()
-        {
-            return Houses;
-        }
-
-        public void setHouses(ICollection<House> houses)
-        {
-            Houses = houses;
-        }
-        #endregion
+        #endregion        
     }
 }

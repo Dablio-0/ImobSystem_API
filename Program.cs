@@ -29,7 +29,6 @@ app.MapUserRoutes();
 app.MapHouseRoutes();
 app.MapOwnerRoutes();
 app.MapTenantRoutes();
-/* It going to add after create the AgreementController */
-//app.MapAgreementRoutes();
+app.MapAgreementRoutes();
 
 app.Run();

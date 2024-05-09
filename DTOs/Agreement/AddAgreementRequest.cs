@@ -3,16 +3,16 @@
     public record class AddAgreementRequest
     (
         uint id,
-        string Owner,
-        string Tenant,
-        string Description,
-        string ValueAgreement,
-        uint NumInstallments,
-        bool Status,
-        DateTime CreatedAt,
-        DateTime UpdateAt,
-        DateTime InitDateAgreement,
-        DateTime PeriodAgreement,
-        DateTime FinalDateAgreement
+        string owner,
+        string tenant,
+        string description,
+        string valueAgreement,
+        uint numInstallments,
+        bool status,
+        DateTime createdAt,
+        DateTime updateAt,
+        DateTime initDateAgreement,
+        DateTime periodAgreement,
+        DateTime finalDateAgreement
     );
 }

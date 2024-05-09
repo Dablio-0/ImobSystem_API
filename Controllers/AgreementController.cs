@@ -1,22 +1,32 @@
 ﻿using ImobSystem_API.Data;
 using ImobSystem_API.DTOs.Agreement;
 using ImobSystem_API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ImobSystem_API.Controllers
 {
     public static class AgreementController
     {
-        public static void MapAgreementEndpoint(this WebApplication app)
+        public static void MapAgreementRoutes(this WebApplication app)
         {
             /* Prefix Agreement Route */
             var groupAgreement = app.MapGroup("agreement");
 
             /* Create Agreement */
-            groupAgreement.MapPost("/create", async (AddAgreementRequest requestAddAgreement, AppDbContext context) =>
+            groupAgreement.MapPost("/create", async (AddAgreementRequest
+                requestAddAgreement, AppDbContext context) =>
             {
-                var newAgreement = new Agreement(requestAddAgreement.Owner, requestAddAgreement.Tenant, requestAddAgreement.Description, requestAddAgreement.ValueAgreement, requestAddAgreement.NumInstallments, requestAddAgreement.UpdateAt, requestAddAgreement.InitDateAgreement, requestAddAgreement.FinalDateAgreement);
+                var newAgreement = new Agreement(
+                    requestAddAgreement.owner,
+                    requestAddAgreement.tenant,
+                    requestAddAgreement.description,
+                    requestAddAgreement.valueAgreement,
+                    requestAddAgreement.numInstallments,
+                    requestAddAgreement.updateAt,
+                    requestAddAgreement.initDateAgreement,
+                    requestAddAgreement.finalDateAgreement);
 
-                var checkAgreementExists = await context.Agreements.AnyAsync(u => u.Id == newAgreement.getId());
+                var checkAgreementExists = await context.Agreements.AnyAsync(a => a.id == newAgreement.id);
 
                 if (checkAgreementExists)
                 {
@@ -26,7 +36,7 @@ namespace ImobSystem_API.Controllers
                 await context.Agreements.AddAsync(newAgreement);
                 await context.SaveChangesAsync();
 
-                return Results.Redirect($"/user/checkInfo/{newAgreement.getId()}");
+                return Results.Ok();
             });
 
             /* Check yourself user info */
