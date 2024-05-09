@@ -16,7 +16,7 @@ namespace ImobSystem_API.Controllers
             {
                 var newAgreement = new Agreement(requestAddAgreement.Owner, requestAddAgreement.Tenant, requestAddAgreement.Description, requestAddAgreement.ValueAgreement, requestAddAgreement.NumInstallments, requestAddAgreement.UpdateAt, requestAddAgreement.InitDateAgreement, requestAddAgreement.FinalDateAgreement);
 
-                var checkAgreementExists = await context.Agreements.AnyAsync(u => u.getEmail() == newAgreement.getEmail());
+                var checkAgreementExists = await context.Agreements.AnyAsync(u => u.Id == newAgreement.getId());
 
                 if (checkAgreementExists)
                 {
