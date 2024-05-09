@@ -3,13 +3,13 @@
     public class User
     {
         #region Properties
-        private uint Id;
-        private string Name;
-        private string Email;
-        private string Password;
-        private DateOnly Age;
-        private DateTime CreatedAt;
-        private DateTime UpdatedAt;
+        private uint id;
+        private string name;
+        private string email;
+        private string password;
+        private DateOnly age;
+        private DateTime createdAt;
+        private DateTime updatedAt;
         #endregion
 
         #region Constructor
@@ -24,71 +24,76 @@
         #endregion
 
         #region Get & Set of Properties
-        public uint GetId()
+        public uint getId()
         {
-            return this.Id;
+            return this.id;
         }
 
-        public void SetId(uint id)
+        public void setId(uint id)
         {
-            Id = id;
+            this.id = id;
         }
 
-        public string GetName()
+        public string getName()
         {
-            return this.Name;
+            return this.name;
         }
 
-        public void SetName(string name)
+        public void setName(string name)
         {
-            Name = name;
+            this.name = name;
         }
 
-        public string GetEmail()
+        public string getEmail()
         {
-            return this.Email;
+            return this.email;
         }
 
-        public void SetEmail(string email)
+        public void setEmail(string email)
         {
-            Email = email;
+            this.email = email;
         }
 
-        public string GetPassword()
+        public string getPassword()
         {
-            return this.Password;
+            return this.password;
         }
 
-        public void SetPassword(string password)
+        public void setPassword(string password)
         {
-            Password = password;
+            this.password = password;
         }
 
-        public DateOnly GetAge()
+        public DateOnly getAge()
         {
-            return this.Age;
+            return this.age;
         }
 
-        public void SetAge(DateOnly age)
+        public void setAge(DateOnly age)
         {
-            Age = age;
+            this.age = age;
         }
         #endregion
 
         #region Get the date and time when the user was created
-        public DateTime GetCreatedAt()
+        public DateTime getCreatedAt()
         {
-            return this.CreatedAt;
+            return this.createdAt;
+        }
+
+        public void setCreatedAt(DateTime createdAt)
+        {
+            this.createdAt = createdAt;
         }
 
         public DateTime GetUpdatedAt()
         {
-            return this.UpdatedAt;
+            return this.updatedAt;
         }
 
         public void SetUpdatedAt(DateTime updatedAt)
         {
-            UpdatedAt = updatedAt;
+            updatedAt = updatedAt;
         }
         #endregion
     }
