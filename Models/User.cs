@@ -15,11 +15,11 @@
         #region Constructor
         public User(string name, string email, string password, DateOnly age)
         {
-            Name = name;
-            Email = email;
-            Password = password;
-            Age = age;
-            CreatedAt = DateTime.Now;
+            this.name = name;
+            this.email = email;
+            this.password = password;
+            this.age = age;
+            this.createdAt = DateTime.Now;
         }
         #endregion
 
@@ -93,7 +93,7 @@
 
         public void SetUpdatedAt(DateTime updatedAt)
         {
-            updatedAt = updatedAt;
+            this.updatedAt = updatedAt;
         }
         #endregion
     }

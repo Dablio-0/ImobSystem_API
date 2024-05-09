@@ -16,15 +16,15 @@ namespace ImobSystem_API.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Agreement> Agreements { get; set; }
-        public DbSet<House> House { get; set; }
-        public DbSet<Owner> Owner { get; set; }
-        public DbSet<Tenant> Tenant { get; set; }
+        public DbSet<House> Houses { get; set; }
+        public DbSet<Owner> Owners { get; set; }
+        public DbSet<Tenant> Tenants { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasKey(u => u.GetId());
+            modelBuilder.Entity<User>().HasKey(u => u.getId());
             modelBuilder.Entity<Agreement>().HasKey(a => a.GetId());
-            modelBuilder.Entity<House>().HasKey(h => h.GetId());
+            modelBuilder.Entity<House>().HasKey(h => h.getId());
             modelBuilder.Entity<Owner>().HasKey(o => o.GetId());
             modelBuilder.Entity<Tenant>().HasKey(t => t.GetId());
 
@@ -36,7 +36,7 @@ namespace ImobSystem_API.Data
             modelBuilder.Entity<House>()
                 .HasOne(h => h.GetAgreement())
                 .WithOne(a => a.GetHouse())
-                .HasForeignKey<House>(h => h.GetId());
+                .HasForeignKey<House>(h => h.getId());
 
             /**
              * Many to Many Relations

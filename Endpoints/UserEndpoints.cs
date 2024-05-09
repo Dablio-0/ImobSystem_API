@@ -7,19 +7,18 @@ namespace ImobSystem_API.Routes
 {
     public static class UserEndpoints
     {
-        public UserEndpoints(WebApplication app)
-        {
-            var prefixRoutesUser = app.MapGroup("user");
+        //public UserEndpoints(WebApplication app)
+        //{
+        //    var prefixRoutesUser = app.MapGroup("user");
 
-            prefixRoutesUser.MapPost("/create", )
-        }
+        //    prefixRoutesUser.MapPost("/create", )
+        //}
 
-        public static RouteGroupBuilder MapUserEndpoint(this WebApplication app)
-        {
-            var group = app.MapGroup("user").WithParameterValidation();
+        //public static RouteGroupBuilder MapUserEndpoint(this WebApplication app)
+        //{
+        //    var group = app.MapGroup("user").WithParameterValidation();
 
-            return group;
-        }
-
+        //    return group;
+        //}
     }
 }

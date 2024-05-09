@@ -4,10 +4,11 @@ namespace ImobSystem_API.Models
     public class House
     {
         #region Properties
-        private uint Id;
-        private string Type;
-        private string Address;
-        private string ZipCode;
+        private uint id;
+        private string address;
+        private uint rooms;
+        private string type;
+        private string zipCode;
         #endregion
 
         #region Section of Relationships
@@ -20,53 +21,64 @@ namespace ImobSystem_API.Models
         #endregion
 
         #region Constructor
-        public House(uint id, string address, string zipCode)
+        public House(string address, uint rooms, string type, string zipCode)
         {
-            Id = id;
-            Address = address;
-            ZipCode = zipCode;
+            this.address = address;
+            this.rooms = rooms;
+            this.type = type;
+            this.zipCode = zipCode;
         }
         #endregion
 
         #region Get & Set of Properties
-        public uint GetId()
+        public uint getId()
         {
-            return Id;
+            return this.id;
         }
 
-        public void SetId(uint id)
+        public void setId(uint id)
         {
-            Id = id;
+            this.id = id;
         }
 
-        public string GetType()
+        public string getAddress()
         {
-            return Type;
+            return this.address;
         }
 
-        public void SetType(string type)
+        public void setAddress(string address)
         {
-            Type = type;
+            this.address = address;
         }
 
-        public string GetAddress()
+        public uint getRooms()
         {
-            return Address;
+            return this.rooms;
         }
 
-        public void SetAddress(string address)
+        public void setRooms(uint rooms)
         {
-            Address = address;
+            this.rooms = rooms;
         }
 
-        public string GetZipCode()
+        public string getType()
         {
-            return ZipCode;
+            return this.type;
         }
 
-        public void SetZipCode(string zipCode)
+        public void setType(string type)
         {
-            ZipCode = zipCode;
+            this.type = type;
+        }
+
+        public string getZipCode()
+        {
+            return this.zipCode;
+        }
+
+        public void setZipCode(string zipCode)
+        {
+            this.zipCode = zipCode;
         }
         #endregion
 

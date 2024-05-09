@@ -1,6 +1,8 @@
 ﻿namespace ImobSystem_API.DTOs.House
 {
-    public class AddHouseRequest
-    {
-    }
+    public record AddHouseRequest(
+        string address,
+        uint rooms,
+        string type,
+        string zipCode);
 }
