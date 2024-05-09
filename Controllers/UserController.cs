@@ -47,7 +47,6 @@ namespace ImobSystem_API.Controllers
                 return Results.Ok(user);
             });
 
-
             /* Update User */
             groupUser.MapPut("/update/{id}", async (UpdateUserRequest requestUpdateUser, AppDbContext context) =>
             {
