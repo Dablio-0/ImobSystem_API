@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using ImobSystem_API.Data;
+using ImobSystem_API.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,8 +23,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseAuthorization();
+app.UseHttpsRedirection();
 
-app.MapControllers();
+app.MapUserRoutes();
+app.MapHouseRoutes();
+app.MapOwnerRoutes();
+app.MapTenantRoutes();
+/* It going to add after create the AgreementController */
+//app.MapAgreementRoutes();
 
 app.Run();

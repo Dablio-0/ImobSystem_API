@@ -11,7 +11,7 @@ namespace ImobSystem_API.Controllers
     public static class UserController
     {
         /* Create User */
-        public static void MapUserEndpoint(this WebApplication app)
+        public static void MapUserRoutes(this WebApplication app)
         {
             /* Prefix User Route */
             var groupUser = app.MapGroup("user");
@@ -31,7 +31,7 @@ namespace ImobSystem_API.Controllers
                 await context.Users.AddAsync(newUser);
                 await context.SaveChangesAsync();
 
-                return Results.Redirect($"/user/checkInfo/{newUser.getId()}");
+                return Results.Ok();
             });
 
             /* Check yourself user info */

@@ -7,18 +7,18 @@ namespace ImobSystem_API.Models
     public class Agreement
     {
         #region Properties
-        private uint Id;
-        private string Owner;
-        private string Tenant;
-        private string Description;
-        private string ValueAgreement;
-        private uint NumInstallments;
-        private bool Status;
-        private DateTime CreatedAt;
-        private DateTime UpdateAt;
-        private DateTime InitDateAgreement;
-        private DateTime PeriodAgreement;
-        private DateTime FinalDateAgreement;
+        public uint id;
+        private string owner;
+        private string tenant;
+        private string description;
+        private string valueAgreement;
+        private uint numInstallments;
+        private bool status;
+        private DateTime createdAt;
+        private DateTime updateAt;
+        private DateTime initDateAgreement;
+        private DateTime periodAgreement;
+        private DateTime finalDateAgreement;
         #endregion
 
         #region Section of Relationships 
@@ -32,166 +32,156 @@ namespace ImobSystem_API.Models
         #region Constructor
         public Agreement(string owner, string tenant, string description, string valueAgreement, uint numInstallments, DateTime updatedAt, DateTime initDateAgreement, DateTime finalDateAgreement)
         {
-            Owner = owner;
-            Tenant = tenant;
-            Description = description;
-            ValueAgreement = valueAgreement;
-            NumInstallments = numInstallments.ToString() == "" ? 0 : numInstallments;
-            Status = false;
-            CreatedAt = DateTime.Now;
-            UpdateAt = updatedAt;
-            InitDateAgreement = initDateAgreement;
-            FinalDateAgreement = finalDateAgreement;
+            this.owner = owner;
+            this.tenant = tenant;
+            this.description = description;
+            this.valueAgreement = valueAgreement;
+            this.numInstallments = numInstallments.ToString() == "" ? 0 : numInstallments;
+            this.status = false;
+            this.createdAt = DateTime.Now;
+            this.updateAt = updatedAt;
+            this.initDateAgreement = initDateAgreement;
+            this.finalDateAgreement = finalDateAgreement;
 
             // verificar se as variaveis initDate e Final possuem e valor, se possuirem chamam a função setPeriodAgreement
             if (initDateAgreement.ToString() != "" && finalDateAgreement.ToString() != "")
             {
-                SetPeriodAgreement(initDateAgreement, finalDateAgreement);
+                setPeriodAgreement(initDateAgreement, finalDateAgreement);
             }
-            else PeriodAgreement = Convert.ToDateTime("00:00:00");
+            else periodAgreement = Convert.ToDateTime("00:00:00");
         }
         #endregion
 
         #region Get & Set of Properties
-        public uint GetId()
+        public string getOwner()
         {
-            return this.Id;
-        }
-
-        public void SetId(uint id)
-        {
-            Id = id;
-        }
-
-        public string GetOwner()
-        {
-            return this.Owner;
+            return this.owner;
         }
 
         public void SetOwner(string owner)
         {
-            Owner = owner;
+            this.owner = owner;
         }
 
-        public string GetTenant()
+        public string getTenant()
         {
-            return this.Tenant;
+            return this.tenant;
         }
 
-        public void SetTenant(string tenant)
+        public void setTenant(string tenant)
         {
-            Tenant = tenant;
+            this.tenant = tenant;
         }
 
-        public string GetDescription()
+        public string getDescription()
         {
-            return this.Description;
+            return this.description;
         }
 
-        public void SetDescription(string description)
+        public void setDescription(string description)
         {
-            Description = description;
+            this.description = description;
         }
 
-        public string GetValueAgreement()
+        public string getValueAgreement()
         {
-            return this.ValueAgreement;
+            return this.valueAgreement;
         }
 
-        public void SetValueAgreement(string valueAgreement)
+        public void setValueAgreement(string valueAgreement)
         {
-            ValueAgreement = valueAgreement;
+            this.valueAgreement = valueAgreement;
         }
 
-        public uint GetNumInstallments()
+        public uint getNumInstallments()
         {
-            return this.NumInstallments;
+            return this.numInstallments;
         }
 
-        public void SetNumInstallments(uint numInstallments)
+        public void setNumInstallments(uint numInstallments)
         {
-            NumInstallments = numInstallments;
+            this.numInstallments = numInstallments;
         }
 
-        public bool GetStatus()
+        public bool getStatus()
         {
-            return this.Status;
+            return this.status;
         }
 
-        public void SetStatus(bool status)
+        public void setStatus(bool status)
         {
-            Status = status;
+            this.status = status;
         }
         #endregion
 
-        #region Get the date and time when the agreement was created
-        public DateTime GetCreatedAt()
+        #region get the date and time when the agreement was created
+        public DateTime getCreatedAt()
         {
-            return this.CreatedAt;
+            return this.createdAt;
         }
 
-        public DateTime GetUpdateA()
+        public DateTime getUpdateA()
         {
-            return this.UpdateAt;
+            return this.updateAt;
         }
 
-        public void SetUpdateA(DateTime updateAt)
+        public void setUpdateA(DateTime updateAt)
         {
-            UpdateAt = updateAt;
+            this.updateAt = updateAt;
         }
 
         public DateTime GetInitDateAgreement()
         {
-            return this.InitDateAgreement;
+            return this.initDateAgreement;
         }
 
-        public void SetInitDateAgreement(DateTime initDateAgreement)
+        public void setInitDateAgreement(DateTime initDateAgreement)
         {
-            InitDateAgreement = initDateAgreement;
+            this.initDateAgreement = initDateAgreement;
         }
 
         public DateTime GetFinalDateAgreement()
         {
-            return this.FinalDateAgreement;
+            return this.finalDateAgreement;
         }
 
-        public void SetFinalDateAgreement(DateTime finalDateAgreement)
+        public void setFinalDateAgreement(DateTime finalDateAgreement)
         {
-            FinalDateAgreement = finalDateAgreement;
+            this.finalDateAgreement = finalDateAgreement;
         }
 
         public DateTime GetPeriodAgreement()
         {
-            return this.PeriodAgreement;
+            return this.periodAgreement;
         }
 
-        public void SetPeriodAgreement(DateTime initDateAgreement, DateTime finalDateAgreement)
+        public void setPeriodAgreement(DateTime initDateAgreement, DateTime finalDateAgreement)
         {
             TimeSpan period = finalDateAgreement - initDateAgreement;
-            PeriodAgreement = Convert.ToDateTime(period);
+            this.periodAgreement = Convert.ToDateTime(period);
         }
         #endregion
 
-        #region Gets & Sets of Relationships 
+        #region Gets & sets of Relationships 
 
         // Agreement - House (One to One)
-        public House GetHouse()
+        public House getHouse()
         {
             return House;
         }
 
-        public void SetHouse(House house)
+        public void setHouse(House house)
         {
             House = house;
         }
 
         // Agreement - Tenant (Many to Many)
-        public ICollection<Tenant> GetTenants()
+        public ICollection<Tenant> getTenants()
         {
             return Tenants;
         }
 
-        public void SetTenants(ICollection<Tenant> tenants)
+        public void setTenants(ICollection<Tenant> tenants)
         {
             Tenants = tenants;
         }

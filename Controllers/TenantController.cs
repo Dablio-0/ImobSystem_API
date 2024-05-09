@@ -1,22 +1,23 @@
 ﻿using ImobSystem_API.Data;
 using ImobSystem_API.DTOs.Tenant;
 using ImobSystem_API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ImobSystem_API.Controllers
 {
     public static class TenantController
     {
-        public static void MapTenantEndpoint(this WebApplication app)
+        public static void MapTenantRoutes(this WebApplication app)
         {
             /* Prefix Tenant Route */
-            var groupTenant = app.MapGroup("user");
+            var groupTenant = app.MapGroup("tenant");
 
             /* Create Tenant */
             groupTenant.MapPost("/create", async (AddTenantRequest requestAddTenant, AppDbContext context) =>
             {
-                var newTenant = new Tenant(requestAddTenant.name, requestAddTenant.email, requestAddTenant.phone, requestAddTenant.CPF);
+                var newTenant = new Tenant(requestAddTenant.name, requestAddTenant.email, requestAddTenant.phone, requestAddTenant.cpf);
 
-                var checkTenantExists = await context.Tenants.AnyAsync(u => u.getEmail() == newTenant.getEmail());
+                var checkTenantExists = await context.Tenants.AnyAsync(t => t.getEmail() == newTenant.getEmail());
 
                 if (checkTenantExists)
                 {
@@ -26,7 +27,7 @@ namespace ImobSystem_API.Controllers
                 await context.Tenants.AddAsync(newTenant);
                 await context.SaveChangesAsync();
 
-                return Results.Redirect($"/user/checkInfo/{newTenant.getId()}");
+                return Results.Redirect($"/user/checkInfo/{newTenant.id}");
             });
 
             /* Check yourself user info */
@@ -45,21 +46,21 @@ namespace ImobSystem_API.Controllers
             /* Update Tenant */
             groupTenant.MapPut("/update/{id}", async (UpdateTenantRequest requestUpdateTenant, AppDbContext context) =>
             {
-                var user = await context.Tenants.FindAsync(requestUpdateTenant.id);
+                var tenant = await context.Tenants.FindAsync(requestUpdateTenant.id);
 
-                if (user == null)
+                if (tenant == null)
                 {
                     return Results.NotFound();
                 }
 
-                user.setName(requestUpdateTenant.name);
-                user.setEmail(requestUpdateTenant.email);
-                user.setPassword(requestUpdateTenant.password);
-                user.setAge(requestUpdateTenant.age);
+                tenant.setName(requestUpdateTenant.name);
+                tenant.setEmail(requestUpdateTenant.email);
+                tenant.setPhone(requestUpdateTenant.phone);
+                tenant.setCPF(requestUpdateTenant.cpf);
 
                 await context.SaveChangesAsync();
 
-                return Results.Ok(user);
+                return Results.Ok(tenant);
             });
 
             /* Delete Tenant */

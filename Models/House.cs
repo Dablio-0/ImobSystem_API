@@ -4,7 +4,7 @@ namespace ImobSystem_API.Models
     public class House
     {
         #region Properties
-        private uint id;
+        public uint id;
         private string address;
         private uint rooms;
         private string type;
@@ -31,16 +31,6 @@ namespace ImobSystem_API.Models
         #endregion
 
         #region Get & Set of Properties
-        public uint getId()
-        {
-            return this.id;
-        }
-
-        public void setId(uint id)
-        {
-            this.id = id;
-        }
-
         public string getAddress()
         {
             return this.address;
@@ -85,23 +75,23 @@ namespace ImobSystem_API.Models
         #region Gets & Sets of Relationships
 
         // House - Agreement (One to One)
-        public Agreement GetAgreement()
+        public Agreement getAgreement()
         {
             return Agreement;
         }
 
-        public void SetAgreement(Agreement agreement)
+        public void setAgreement(Agreement agreement)
         {
             Agreement = agreement;
         }
 
         // House - Owner (Many to Many)
-        public ICollection<Owner> GetOwners()
+        public ICollection<Owner> getOwners()
         {
             return Owners;
         }
 
-        public void SetOwners(ICollection<Owner> owners)
+        public void setOwners(ICollection<Owner> owners)
         {
             Owners = owners;
         }

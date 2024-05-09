@@ -1,9 +1,12 @@
-﻿namespace ImobSystem_API.Models
+﻿using System.Numerics;
+using System.Security.Cryptography;
+
+namespace ImobSystem_API.Models
 {
     public class User
     {
         #region Properties
-        private uint id;
+        public uint id;
         private string name;
         private string email;
         private string password;
@@ -24,16 +27,6 @@
         #endregion
 
         #region Get & Set of Properties
-        public uint getId()
-        {
-            return this.id;
-        }
-
-        public void setId(uint id)
-        {
-            this.id = id;
-        }
-
         public string getName()
         {
             return this.name;

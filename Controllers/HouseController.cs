@@ -12,7 +12,7 @@ namespace ImobSystem_API.Controllers
 {
     public static class HouseController
     {
-        public static void MapHouseEndpoint(this WebApplication app)
+        public static void MapHouseRoutes(this WebApplication app)
         {
             /* Prefix House Route */
             var groupHouse = app.MapGroup("house");
@@ -33,7 +33,7 @@ namespace ImobSystem_API.Controllers
                 await context.Houses.AddAsync(newHouse);
                 await context.SaveChangesAsync();
 
-                return Results.Redirect($"/checkInfo/{newHouse.getId()}");
+                return Results.Redirect($"/checkInfo/{newHouse.id}");
             });
             #endregion
 

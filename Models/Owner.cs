@@ -3,13 +3,14 @@
     public class Owner
     {
         #region Properties
-        private uint Id;
-        private string Name;
-        private string Email;
-        private string Phone;
-        private string CPF;
-        private DateTime CreatedAt;
-        private DateTime UpdatedAt;
+        public uint id;
+        private string name;
+        private DateOnly age;
+        private string email;
+        private string phone;
+        private string cpf;
+        private DateTime createdAt;
+        private DateTime updatedAt;
         #endregion
 
         #region Section of Relationships 
@@ -20,96 +21,95 @@
         #region Constructor
         public Owner(string name, string email, string phone, string cpf)
         {
-            Name = name;
-            Email = email;
-            Phone = phone;
-            CPF = cpf;
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
+            this.name = name;
+            this.email = email;
+            this.phone = phone;
+            this.cpf = cpf;
+            this.createdAt = DateTime.Now;
+            this.updatedAt = DateTime.Now;
         }
         #endregion
 
         #region Get & Set of Properties
-        public uint GetId()
+        public string getName()
         {
-            return this.Id;
+            return this.name;
         }
 
-        public void SetId(uint id)
+        public void setName(string name)
         {
-            Id = id;
-
+            this.name = name;
         }
 
-        public string GetName()
+        public DateOnly getAge()
         {
-            return this.Name;
+            return this.age;
         }
 
-        public void SetName(string name)
+        public void setAge(DateOnly age)
         {
-            Name = name;
+            this.age = age;
         }
 
-        public string GetEmail()
+        public string getEmail()
         {
-            return this.Email;
+            return this.email;
         }
 
-        public void SetEmail(string email)
+        public void setEmail(string email)
         {
-            Email = email;
+            this.email = email;
         }
 
-        public string GetPhone()
+        public string getPhone()
         {
-            return this.Phone;
+            return this.phone;
         }
 
-        public void SetPhone(string phone)
+        public void setPhone(string phone)
         {
-            Phone = phone;
+            this.phone = phone;
         }
 
-        public string GetCPF()
+        public string getCPF()
         {
-            return this.CPF;
+            return this.cpf;
         }
 
-        public void SetCPF(string cpf)
+        public void setCPF(string cpf)
         {
-            CPF = cpf;
+            this.cpf = cpf;
         }
 
-        public DateTime GetCreatedAt()
+        public DateTime getCreatedAt()
         {
-            return this.CreatedAt;
+            return this.createdAt;
         }
 
-        public void SetCreatedAt(DateTime createdAt)
+        public void setCreatedAt(DateTime createdAt)
         {
-            CreatedAt = createdAt;
+            this.createdAt = createdAt;
         }
 
-        public DateTime GetUpdatedAt()
+        public DateTime getUpdatedAt()
         {
-            return this.UpdatedAt;
+            return this.updatedAt;
         }
 
-        public void SetUpdatedAt(DateTime updatedAt)
+        public void setUpdatedAt(DateTime updatedAt)
         {
-            UpdatedAt = updatedAt;
+            this.updatedAt = updatedAt;
         }
         #endregion
 
         #region Gets & Sets of Relationships
         // Owner - House (Many to Many)
-        public ICollection<House> GetHouses()
+        public ICollection<House> getHouses()
         {
             return Houses;
         }
 
-        public void SetHouses(ICollection<House> houses)
+        public void setHouses(ICollection<House> houses)
         {
             Houses = houses;
         }

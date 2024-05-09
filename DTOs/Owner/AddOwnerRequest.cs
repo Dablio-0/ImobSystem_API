@@ -5,6 +5,6 @@
         string name,
         string email,
         string phone,
-        string CPF
+        string cpf
     );
 }

@@ -1,20 +1,21 @@
 ﻿using ImobSystem_API.Data;
 using ImobSystem_API.DTOs.Owner;
 using ImobSystem_API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ImobSystem_API.Controllers
 {
     public static class OwnerController
     {
-        public static void MapOwnerEndpoint(this WebApplication app)
+        public static void MapOwnerRoutes(this WebApplication app)
         {
             /* Prefix Owner Route */
-            var groupOwner = app.MapGroup("user");
+            var groupOwner = app.MapGroup("owner");
 
             /* Create Owner */
             groupOwner.MapPost("/create", async (AddOwnerRequest requestAddOwner, AppDbContext context) =>
             {
-                var newOwner = new Owner(requestAddOwner.name, requestAddOwner.email, requestAddOwner.phone, requestAddOwner.CPF);
+                var newOwner = new Owner(requestAddOwner.name, requestAddOwner.email, requestAddOwner.phone, requestAddOwner.cpf);
 
                 var checkOwnerExists = await context.Owners.AnyAsync(u => u.getEmail() == newOwner.getEmail());
 
@@ -26,7 +27,7 @@ namespace ImobSystem_API.Controllers
                 await context.Owners.AddAsync(newOwner);
                 await context.SaveChangesAsync();
 
-                return Results.Redirect($"/user/checkInfo/{newOwner.getId()}");
+                return Results.Redirect($"/user/checkInfo/{newOwner.id}");
             });
 
             /* Check yourself user info */
@@ -43,7 +44,7 @@ namespace ImobSystem_API.Controllers
             });
 
             /* Update Owner */
-            groupOwner.MapPut("/update/{id}", async (UpdateOwnerRequest requestUpdateOwner, AppDbContext context) =>
+            groupOwner.MapPut("/update/{id?}", async (UpdateOwnerRequest requestUpdateOwner, AppDbContext context) =>
             {
                 var user = await context.Owners.FindAsync(requestUpdateOwner.id);
 
@@ -54,8 +55,8 @@ namespace ImobSystem_API.Controllers
 
                 user.setName(requestUpdateOwner.name);
                 user.setEmail(requestUpdateOwner.email);
-                user.setPassword(requestUpdateOwner.password);
-                user.setAge(requestUpdateOwner.age);
+                user.setPhone(requestUpdateOwner.phone);
+                user.setCPF(requestUpdateOwner.cpf);
 
                 await context.SaveChangesAsync();
 
@@ -63,7 +64,7 @@ namespace ImobSystem_API.Controllers
             });
 
             /* Delete Owner */
-            groupOwner.MapDelete("/delete/{id}", async (uint id, AppDbContext context) =>
+            groupOwner.MapDelete("/delete/{id?}", async (uint id, AppDbContext context) =>
             {
                 var user = await context.Owners.FindAsync(id);
 

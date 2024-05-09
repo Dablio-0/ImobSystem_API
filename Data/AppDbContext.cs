@@ -6,6 +6,12 @@ namespace ImobSystem_API.Data
 {
     public class AppDbContext : DbContext
     {
+        public DbSet<User> Users { get; set; }
+        public DbSet<Agreement> Agreements { get; set; }
+        public DbSet<House> Houses { get; set; }
+        public DbSet<Owner> Owners { get; set; }
+        public DbSet<Tenant> Tenants { get; set; }
+
         override protected void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=ImobSystem_API.sqlite");
@@ -14,19 +20,13 @@ namespace ImobSystem_API.Data
             base.OnConfiguring(optionsBuilder);
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Agreement> Agreements { get; set; }
-        public DbSet<House> Houses { get; set; }
-        public DbSet<Owner> Owners { get; set; }
-        public DbSet<Tenant> Tenants { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasKey(u => u.getId());
-            modelBuilder.Entity<Agreement>().HasKey(a => a.GetId());
-            modelBuilder.Entity<House>().HasKey(h => h.getId());
-            modelBuilder.Entity<Owner>().HasKey(o => o.GetId());
-            modelBuilder.Entity<Tenant>().HasKey(t => t.GetId());
+            modelBuilder.Entity<User>().HasKey(u => u.id);
+            modelBuilder.Entity<Agreement>().HasKey(a => a.id);
+            modelBuilder.Entity<House>().HasKey(h => h.id);
+            modelBuilder.Entity<Owner>().HasKey(o => o.id);
+            modelBuilder.Entity<Tenant>().HasKey(t => t.id);
 
             /**
              * One to One Relations
@@ -34,9 +34,9 @@ namespace ImobSystem_API.Data
 
             // Agreement & House (One to One)
             modelBuilder.Entity<House>()
-                .HasOne(h => h.GetAgreement())
-                .WithOne(a => a.GetHouse())
-                .HasForeignKey<House>(h => h.getId());
+                .HasOne(h => h.getAgreement())
+                .WithOne(a => a.getHouse())
+                .HasForeignKey<House>(h => h.id);
 
             /**
              * Many to Many Relations
@@ -44,13 +44,13 @@ namespace ImobSystem_API.Data
 
             // House & Onwer (Many to Many)
             modelBuilder.Entity<House>()
-                .HasMany(h => h.GetOwners())
-                .WithMany(o => o.GetHouses())
+                .HasMany(h => h.getOwners())
+                .WithMany(o => o.getHouses())
                 .UsingEntity(j => j.ToTable("HouseOwner"));
 
             // Agreement & Tenant (Many to Many)
             modelBuilder.Entity<Agreement>()
-                .HasMany(a => a.GetTenants())
+                .HasMany(a => a.getTenants())
                 .WithMany(t => t.GetAgreements())
                 .UsingEntity(j => j.ToTable("AgreementTenant"));
 
