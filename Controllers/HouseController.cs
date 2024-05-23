@@ -17,7 +17,6 @@ namespace ImobSystem_API.Controllers
             /* Prefix House Route */
             var groupHouse = app.MapGroup("house");
 
-            /* Create House */
             #region Create House
             groupHouse.MapPost("/create", async (AddHouseRequest requestAddHouse, AppDbContext context) =>
             {
@@ -37,7 +36,6 @@ namespace ImobSystem_API.Controllers
             });
             #endregion
 
-            /* Check yourself house info */
             #region Check House Info
             groupHouse.MapGet("/checkInfo/{id}", async (uint id, AppDbContext context) =>
             {
@@ -52,11 +50,10 @@ namespace ImobSystem_API.Controllers
             });
             #endregion
 
-            /* Update House */
             #region Update House
-            groupHouse.MapPut("/update/{id}", async (UpdateHouseRequest requestUpdateHouse, AppDbContext context) =>
+            groupHouse.MapPut("/update/{id}", async (uint id, UpdateHouseRequest requestUpdateHouse, AppDbContext context) =>
             {
-                var house = await context.Houses.FindAsync(requestUpdateHouse.id);
+                var house = await context.Houses.FindAsync(id);
 
                 if (house == null)
                 {
@@ -72,7 +69,6 @@ namespace ImobSystem_API.Controllers
             });
             #endregion
 
-            /* Delete House */
             #region Delete House
             groupHouse.MapDelete("/delete/{id}", async (uint id, AppDbContext context) =>
             {
@@ -90,7 +86,6 @@ namespace ImobSystem_API.Controllers
             });
             #endregion
 
-            /* Get Tenant List */
             groupHouse.MapGet("/checkTenants/${idUser}", async (uint idUser, AppDbContext context) =>
             {
 

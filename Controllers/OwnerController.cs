@@ -44,9 +44,9 @@ namespace ImobSystem_API.Controllers
             });
 
             /* Update Owner */
-            groupOwner.MapPut("/update/{id?}", async (UpdateOwnerRequest requestUpdateOwner, AppDbContext context) =>
+            groupOwner.MapPut("/update/{id}", async (uint id, UpdateOwnerRequest requestUpdateOwner, AppDbContext context) =>
             {
-                var user = await context.Owners.FindAsync(requestUpdateOwner.id);
+                var user = await context.Owners.FindAsync(id);
 
                 if (user == null)
                 {
@@ -64,7 +64,7 @@ namespace ImobSystem_API.Controllers
             });
 
             /* Delete Owner */
-            groupOwner.MapDelete("/delete/{id?}", async (uint id, AppDbContext context) =>
+            groupOwner.MapDelete("/delete/{id}", async (uint id, AppDbContext context) =>
             {
                 var user = await context.Owners.FindAsync(id);
 

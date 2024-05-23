@@ -44,9 +44,9 @@ namespace ImobSystem_API.Controllers
             });
 
             /* Update Tenant */
-            groupTenant.MapPut("/update/{id}", async (UpdateTenantRequest requestUpdateTenant, AppDbContext context) =>
+            groupTenant.MapPut("/update/{id}", async (uint id, UpdateTenantRequest requestUpdateTenant, AppDbContext context) =>
             {
-                var tenant = await context.Tenants.FindAsync(requestUpdateTenant.id);
+                var tenant = await context.Tenants.FindAsync(id);
 
                 if (tenant == null)
                 {

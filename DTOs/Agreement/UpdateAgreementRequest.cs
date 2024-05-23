@@ -2,7 +2,6 @@
 {
     public record class UpdateAgreementRequest
     (
-        uint id,
         string owner,
         string tenant,
         string description,

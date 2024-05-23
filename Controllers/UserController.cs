@@ -48,9 +48,9 @@ namespace ImobSystem_API.Controllers
             });
 
             /* Update User */
-            groupUser.MapPut("/update/{id}", async (UpdateUserRequest requestUpdateUser, AppDbContext context) =>
+            groupUser.MapPut("/update/{id}", async (uint id, UpdateUserRequest requestUpdateUser, AppDbContext context) =>
             {
-                var user = await context.Users.FindAsync(requestUpdateUser.id);
+                var user = await context.Users.FindAsync(id);
 
                 if (user == null)
                 {

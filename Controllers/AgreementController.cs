@@ -55,9 +55,9 @@ namespace ImobSystem_API.Controllers
             });
 
             /* Update Agreement */
-            groupAgreement.MapPut("/update/{id}", async (UpdateAgreementRequest requestUpdateAgreement, AppDbContext context) =>
+            groupAgreement.MapPut("/update/{id}", async (uint id, UpdateAgreementRequest requestUpdateAgreement, AppDbContext context) =>
             {
-                var agreement = await context.Agreements.FindAsync(requestUpdateAgreement.id);
+                var agreement = await context.Agreements.FindAsync(id);
 
                 if (agreement == null)
                 {
