@@ -1,4 +1,4 @@
-﻿namespace ImobSystem_API.DTOs.House
+﻿namespace ImobSystem_API.DTOs.Houses
 {
     public record UpdateHouseRequest(
         uint id,

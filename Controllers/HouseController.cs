@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ImobSystem_API.Models;
-using ImobSystem_API.DTOs.House;
+using ImobSystem_API.DTOs.Houses;
 using ImobSystem_API.Data;
 using ImobSystem_API.DTOs.User;
 

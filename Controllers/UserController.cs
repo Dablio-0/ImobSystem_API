@@ -19,7 +19,7 @@ namespace ImobSystem_API.Controllers
             /* Create User */
             groupUser.MapPost("/create", async (AddUserRequest requestAddUser, AppDbContext context) =>
             {
-                var newUser = new User(requestAddUser.name, requestAddUser.email, requestAddUser.password, requestAddUser.age);
+                var newUser = new User(requestAddUser.name, requestAddUser.email, requestAddUser.password);
 
                 var checkUserExists = await context.Users.AnyAsync(u => u.getEmail() == newUser.getEmail());
 

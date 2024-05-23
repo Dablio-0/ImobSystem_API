@@ -26,11 +26,36 @@ namespace ImobSystem_API.Models
         public House House;
 
         // Agreement - Tenant (Many to Many)
-        public ICollection<Tenant> Tenants = new List<Tenant>();
+        public ICollection<Tenant> Tenants;
         #endregion
 
-        #region Constructor
-        public Agreement(string owner, string tenant, string description, string valueAgreement, uint numInstallments, DateTime updatedAt, DateTime initDateAgreement, DateTime finalDateAgreement)
+        #region Constructors
+        public Agreement()
+        {
+            this.id = 0;
+            this.owner = this.tenant = this.description = this.valueAgreement = "";
+            this.numInstallments = 0;
+            this.status = false;
+            this.createdAt = DateTime.Now;
+            this.updateAt = DateTime.Now;
+            this.initDateAgreement = Convert.ToDateTime("00:00:00");
+            this.finalDateAgreement = Convert.ToDateTime("00:00:00");
+            this.periodAgreement = Convert.ToDateTime("00:00:00");
+            this.House = new House();
+            this.Tenants = new List<Tenant>();
+        }
+
+        public Agreement(
+            string owner,
+            string tenant,
+            string description,
+            string valueAgreement,
+            uint numInstallments,
+            DateTime updatedAt,
+            DateTime initDateAgreement,
+            DateTime finalDateAgreement,
+            House House
+        )
         {
             this.owner = owner;
             this.tenant = tenant;
@@ -49,6 +74,9 @@ namespace ImobSystem_API.Models
                 setPeriodAgreement(initDateAgreement, finalDateAgreement);
             }
             else periodAgreement = Convert.ToDateTime("00:00:00");
+
+            this.House = House;
+            this.Tenants = new List<Tenant>();
         }
         #endregion
 
@@ -114,7 +142,7 @@ namespace ImobSystem_API.Models
         }
         #endregion
 
-        #region get the date and time when the agreement was created
+        #region Get the date and time when the agreement was created
         public DateTime getCreatedAt()
         {
             return this.createdAt;

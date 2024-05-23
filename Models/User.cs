@@ -16,12 +16,20 @@ namespace ImobSystem_API.Models
         #endregion
 
         #region Constructor
-        public User(string name, string email, string password, DateOnly age)
+        public User()
+        {
+            this.name = this.email = this.password = "";
+            this.age = new DateOnly();
+            this.createdAt = DateTime.Now;
+            this.updatedAt = DateTime.Now;
+        }
+
+        public User(string name, string email, string password)
         {
             this.name = name;
             this.email = email;
             this.password = password;
-            this.age = age;
+            //this.age = age;
             this.createdAt = DateTime.Now;
         }
         #endregion

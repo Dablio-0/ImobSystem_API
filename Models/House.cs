@@ -1,4 +1,6 @@
 ﻿
+using System.Security.Policy;
+
 namespace ImobSystem_API.Models
 {
     public class House
@@ -17,8 +19,17 @@ namespace ImobSystem_API.Models
         public Agreement Agreement;
 
         // House - Owner (Many to Many)
-        public ICollection<Owner> Owners = new List<Owner>();
+        public ICollection<Owner> Owners;
         #endregion
+
+        public House()
+        {
+            this.id = 0;
+            this.address = this.type = this.zipCode = "";
+            this.rooms = 0;
+            this.Agreement = new Agreement();
+            this.Owners = new List<Owner>();
+        }
 
         #region Constructor
         public House(string address, uint rooms, string type, string zipCode)
@@ -27,6 +38,8 @@ namespace ImobSystem_API.Models
             this.rooms = rooms;
             this.type = type;
             this.zipCode = zipCode;
+            this.Agreement = new Agreement();
+            Owners = new List<Owner>();
         }
         #endregion
 

@@ -15,10 +15,20 @@
 
         #region  Section of Relationships
         //Tenant - Agreement (Many to Many)
-        public ICollection<Agreement> Agreements = new List<Agreement>();
+        public ICollection<Agreement> Agreements;
         #endregion
 
         #region Constructor
+        public Tenant()
+        {
+            this.id = 0;
+            this.name = this.email = this.phone = this.cpf = "";
+            this.age = new DateOnly();
+            this.createdAt = DateTime.Now;
+            this.updatedAt = DateTime.Now;
+            Agreements = new List<Agreement>();
+        }
+
         public Tenant(string name, string email, string phone, string cpf)
         {
             this.name = name;
@@ -27,6 +37,7 @@
             this.cpf = cpf;
             this.createdAt = DateTime.Now;
             this.updatedAt = DateTime.Now;
+            Agreements = new List<Agreement>();
         }
         #endregion
 

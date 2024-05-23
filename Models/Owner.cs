@@ -15,10 +15,20 @@
 
         #region Section of Relationships 
         // Owner - House (Many to Many)
-        public ICollection<House> Houses = new List<House>();
+        public ICollection<House> Houses;
         #endregion
 
         #region Constructor
+        public Owner()
+        {
+            this.id = 0;
+            this.name = this.email = this.phone = this.cpf = "";
+            this.age = new DateOnly();
+            this.createdAt = DateTime.Now;
+            this.updatedAt = DateTime.Now;
+            Houses = new List<House>();
+        }
+
         public Owner(string name, string email, string phone, string cpf)
         {
             this.name = name;
@@ -27,6 +37,7 @@
             this.cpf = cpf;
             this.createdAt = DateTime.Now;
             this.updatedAt = DateTime.Now;
+            Houses = new List<House>();
         }
         #endregion
 

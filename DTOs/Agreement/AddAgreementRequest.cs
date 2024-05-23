@@ -1,4 +1,6 @@
-﻿namespace ImobSystem_API.DTOs.Agreement
+﻿using ImobSystem_API.Models;
+
+namespace ImobSystem_API.DTOs.Agreement
 {
     public record class AddAgreementRequest
     (
@@ -13,6 +15,7 @@
         DateTime updateAt,
         DateTime initDateAgreement,
         DateTime periodAgreement,
-        DateTime finalDateAgreement
+        DateTime finalDateAgreement,
+        House House
     );
 }

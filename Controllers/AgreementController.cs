@@ -24,7 +24,9 @@ namespace ImobSystem_API.Controllers
                     requestAddAgreement.numInstallments,
                     requestAddAgreement.updateAt,
                     requestAddAgreement.initDateAgreement,
-                    requestAddAgreement.finalDateAgreement);
+                    requestAddAgreement.finalDateAgreement,
+                    requestAddAgreement.House
+                    );
 
                 var checkAgreementExists = await context.Agreements.AnyAsync(a => a.id == newAgreement.id);
 

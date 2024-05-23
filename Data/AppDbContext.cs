@@ -12,7 +12,9 @@ namespace ImobSystem_API.Data
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Tenant> Tenants { get; set; }
 
-        override protected void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=ImobSystem_API.sqlite");
             optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
@@ -53,6 +55,22 @@ namespace ImobSystem_API.Data
                 .HasMany(a => a.Tenants)
                 .WithMany(t => t.Agreements)
                 .UsingEntity(j => j.ToTable("AgreementTenant"));
+
+            //// Configurando a tabela de junção (HouseOwner)
+            //modelBuilder.Entity<HouseOwner>()
+            //    .HasKey(ho => new { ho.HouseId, ho.OwnerId });
+
+            //// Configurando relacionamento entre HouseOwner e House
+            //modelBuilder.Entity<HouseOwner>()
+            //    .HasOne(ho => ho.House)
+            //    .WithMany(h => h.HouseOwners)
+            //    .HasForeignKey(ho => ho.HouseId);
+
+            //// Configurando relacionamento entre HouseOwner e Owner
+            //modelBuilder.Entity<HouseOwner>()
+            //    .HasOne(ho => ho.Owner)
+            //    .WithMany(o => o.HouseOwners)
+            //    .HasForeignKey(ho => ho.OwnerId);
 
             base.OnModelCreating(modelBuilder);
         }
