@@ -7,10 +7,10 @@ namespace ImobSystem_API.Models
     {
         #region Properties
         public uint id;
-        private string address;
-        private uint rooms;
-        private string type;
-        private string zipCode;
+        public string address;
+        public uint rooms;
+        public string type;
+        public string zipCode;
         #endregion
 
         #region Section of Relationships

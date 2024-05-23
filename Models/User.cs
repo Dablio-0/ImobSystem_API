@@ -7,12 +7,12 @@ namespace ImobSystem_API.Models
     {
         #region Properties
         public uint id;
-        private string name;
-        private string email;
-        private string password;
-        private DateOnly age;
-        private DateTime createdAt;
-        private DateTime updatedAt;
+        public string name;
+        public string email;
+        public string password;
+        public DateOnly age;
+        public DateTime createdAt;
+        public DateTime updatedAt;
         #endregion
 
         #region Constructor

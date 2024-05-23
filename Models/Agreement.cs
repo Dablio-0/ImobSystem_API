@@ -8,17 +8,17 @@ namespace ImobSystem_API.Models
     {
         #region Properties
         public uint id;
-        private string owner;
-        private string tenant;
-        private string description;
-        private string valueAgreement;
-        private uint numInstallments;
-        private bool status;
-        private DateTime createdAt;
-        private DateTime updateAt;
-        private DateTime initDateAgreement;
-        private DateTime periodAgreement;
-        private DateTime finalDateAgreement;
+        public string owner;
+        public string tenant;
+        public string description;
+        public string valueAgreement;
+        public uint numInstallments;
+        public bool status;
+        public DateTime createdAt;
+        public DateTime updateAt;
+        public DateTime initDateAgreement;
+        public DateTime periodAgreement;
+        public DateTime finalDateAgreement;
         #endregion
 
         #region Section of Relationships 

@@ -4,13 +4,13 @@
     {
         #region Properties
         public uint id;
-        private string name;
-        private DateOnly age;
-        private string email;
-        private string phone;
-        private string cpf;
-        private DateTime createdAt;
-        private DateTime updatedAt;
+        public string name;
+        public DateOnly age;
+        public string email;
+        public string phone;
+        public string cpf;
+        public DateTime createdAt;
+        public DateTime updatedAt;
         #endregion
 
         #region Section of Relationships 

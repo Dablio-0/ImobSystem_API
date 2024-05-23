@@ -60,7 +60,7 @@ namespace ImobSystem_API.Controllers
                     return Results.NotFound("House not found.");
                 }
 
-                house.setAddress(requestUpdateHouse.address);
+                house.address = requestUpdateHouse.address;
                 house.setRooms(requestUpdateHouse.rooms);
                 house.setType(requestUpdateHouse.type);
                 house.setZipCode(requestUpdateHouse.zipCode);
@@ -86,10 +86,10 @@ namespace ImobSystem_API.Controllers
             });
             #endregion
 
-            groupHouse.MapGet("/checkTenants/${idUser}", async (uint idUser, AppDbContext context) =>
-            {
+            //groupHouse.MapGet("/checkTenants/${idUser}", async (uint idUser, AppDbContext context) =>
+            //{
 
-            });
+            //});
         }
     }
 }
