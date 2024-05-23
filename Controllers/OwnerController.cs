@@ -78,6 +78,12 @@ namespace ImobSystem_API.Controllers
 
                 return Results.Ok();
             });
+
+            /* Get Owner List */
+            groupOwner.MapGet("/checkOwners/${idUser}", async (uint idUser, AppDbContext context) =>
+            {
+
+            });
         }
     }
 }

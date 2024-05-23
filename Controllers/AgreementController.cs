@@ -83,6 +83,18 @@ namespace ImobSystem_API.Controllers
 
                 return Results.Ok();
             });
+
+            /* Get Active Agreement List */
+            groupAgreement.MapGet("/checkActiveAgreements/${idUser}", async (uint idUser, AppDbContext context) =>
+            {
+
+            });
+
+            /* Get Inactive Agreement List */
+            groupAgreement.MapGet("/checkInactiveAgreements/${idUser}", async (uint idUser, AppDbContext context) =>
+            {
+
+            });
         }
     }
 }

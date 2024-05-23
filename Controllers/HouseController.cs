@@ -89,6 +89,12 @@ namespace ImobSystem_API.Controllers
                 return Results.Ok("House deleted.");
             });
             #endregion
+
+            /* Get Tenant List */
+            groupHouse.MapGet("/checkTenants/${idUser}", async (uint idUser, AppDbContext context) =>
+            {
+
+            });
         }
     }
 }

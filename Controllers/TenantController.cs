@@ -78,6 +78,12 @@ namespace ImobSystem_API.Controllers
 
                 return Results.Ok();
             });
+
+            /* Get Tenant List */
+            groupTenant.MapGet("/checkTenants/${idUser}", async (uint idUser, AppDbContext context) =>
+            {
+
+            });
         }
     }
 }
