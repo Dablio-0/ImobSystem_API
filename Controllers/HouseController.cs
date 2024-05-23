@@ -22,7 +22,7 @@ namespace ImobSystem_API.Controllers
             {
                 var newHouse = new House(requestAddHouse.address, requestAddHouse.rooms, requestAddHouse.type, requestAddHouse.zipCode);
 
-                var checkHouseExists = await context.Houses.AnyAsync(h => h.getAddress() == newHouse.getAddress());
+                var checkHouseExists = await context.Houses.AnyAsync(h => h.Address == newHouse.Address);
 
                 if (checkHouseExists)
                 {
@@ -32,7 +32,7 @@ namespace ImobSystem_API.Controllers
                 await context.Houses.AddAsync(newHouse);
                 await context.SaveChangesAsync();
 
-                return Results.Redirect($"/checkInfo/{newHouse.id}");
+                return Results.Redirect($"/checkInfo/{newHouse.Id}");
             });
             #endregion
 
@@ -60,10 +60,10 @@ namespace ImobSystem_API.Controllers
                     return Results.NotFound("House not found.");
                 }
 
-                house.address = requestUpdateHouse.address;
-                house.setRooms(requestUpdateHouse.rooms);
-                house.setType(requestUpdateHouse.type);
-                house.setZipCode(requestUpdateHouse.zipCode);
+                house.Address = requestUpdateHouse.address;
+                house.Rooms = requestUpdateHouse.rooms;
+                house.Type = requestUpdateHouse.type;
+                house.ZipCode = requestUpdateHouse.zipCode;
 
                 return Results.Ok(house);
             });
@@ -86,10 +86,10 @@ namespace ImobSystem_API.Controllers
             });
             #endregion
 
-            //groupHouse.MapGet("/checkTenants/${idUser}", async (uint idUser, AppDbContext context) =>
-            //{
+            groupHouse.MapGet("/checkTenants/${idUser}", async (uint idUser, AppDbContext context) =>
+            {
 
-            //});
+            });
         }
     }
 }

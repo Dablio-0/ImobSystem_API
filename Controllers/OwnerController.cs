@@ -17,7 +17,7 @@ namespace ImobSystem_API.Controllers
             {
                 var newOwner = new Owner(requestAddOwner.name, requestAddOwner.email, requestAddOwner.phone, requestAddOwner.cpf);
 
-                var checkOwnerExists = await context.Owners.AnyAsync(u => u.getEmail() == newOwner.getEmail());
+                var checkOwnerExists = await context.Owners.AnyAsync(u => u.Email == newOwner.Email);
 
                 if (checkOwnerExists)
                 {
@@ -27,7 +27,7 @@ namespace ImobSystem_API.Controllers
                 await context.Owners.AddAsync(newOwner);
                 await context.SaveChangesAsync();
 
-                return Results.Redirect($"/user/checkInfo/{newOwner.id}");
+                return Results.Redirect($"/user/checkInfo/{newOwner.Id}");
             });
 
             /* Check yourself user info */
@@ -53,10 +53,10 @@ namespace ImobSystem_API.Controllers
                     return Results.NotFound();
                 }
 
-                user.setName(requestUpdateOwner.name);
-                user.setEmail(requestUpdateOwner.email);
-                user.setPhone(requestUpdateOwner.phone);
-                user.setCPF(requestUpdateOwner.cpf);
+                user.Name = requestUpdateOwner.name;
+                user.Email = requestUpdateOwner.email;
+                user.Phone = requestUpdateOwner.phone;
+                user.Cpf = requestUpdateOwner.cpf;
 
                 await context.SaveChangesAsync();
 

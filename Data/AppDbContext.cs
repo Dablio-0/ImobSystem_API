@@ -24,11 +24,11 @@ namespace ImobSystem_API.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasKey(u => u.id);
-            modelBuilder.Entity<Agreement>().HasKey(a => a.id);
-            modelBuilder.Entity<House>().HasKey(h => h.id);
-            modelBuilder.Entity<Owner>().HasKey(o => o.id);
-            modelBuilder.Entity<Tenant>().HasKey(t => t.id);
+            modelBuilder.Entity<User>().HasKey(u => u.Id);
+            modelBuilder.Entity<Agreement>().HasKey(a => a.Id);
+            modelBuilder.Entity<House>().HasKey(h => h.Id);
+            modelBuilder.Entity<Owner>().HasKey(o => o.Id);
+            modelBuilder.Entity<Tenant>().HasKey(t => t.Id);
 
             /**
              * One to One Relations
@@ -38,7 +38,7 @@ namespace ImobSystem_API.Data
             modelBuilder.Entity<House>()
                 .HasOne(h => h.Agreement)
                 .WithOne(a => a.House)
-                .HasForeignKey<House>(h => h.id);
+                .HasForeignKey<House>(h => h.Id);
 
             /**
              * Many to Many Relations

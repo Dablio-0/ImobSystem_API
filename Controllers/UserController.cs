@@ -21,7 +21,7 @@ namespace ImobSystem_API.Controllers
             {
                 var newUser = new User(requestAddUser.name, requestAddUser.email, requestAddUser.password);
 
-                var checkUserExists = await context.Users.AnyAsync(u => u.getEmail() == newUser.getEmail());
+                var checkUserExists = await context.Users.AnyAsync(u => u.Email == newUser.Email);
 
                 if (checkUserExists)
                 {
@@ -57,10 +57,10 @@ namespace ImobSystem_API.Controllers
                     return Results.NotFound();
                 }
 
-                user.setName(requestUpdateUser.name);
-                user.setEmail(requestUpdateUser.email);
-                user.setPassword(requestUpdateUser.password);
-                user.setAge(requestUpdateUser.age);
+                user.Name = requestUpdateUser.name;
+                user.Email = requestUpdateUser.email;
+                user.Password = requestUpdateUser.password;
+                user.Age = requestUpdateUser.age;
 
                 await context.SaveChangesAsync();
 

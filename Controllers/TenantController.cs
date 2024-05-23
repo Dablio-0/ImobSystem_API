@@ -17,7 +17,7 @@ namespace ImobSystem_API.Controllers
             {
                 var newTenant = new Tenant(requestAddTenant.name, requestAddTenant.email, requestAddTenant.phone, requestAddTenant.cpf);
 
-                var checkTenantExists = await context.Tenants.AnyAsync(t => t.getEmail() == newTenant.getEmail());
+                var checkTenantExists = await context.Tenants.AnyAsync(t => t.Email == newTenant.Email);
 
                 if (checkTenantExists)
                 {
@@ -27,7 +27,7 @@ namespace ImobSystem_API.Controllers
                 await context.Tenants.AddAsync(newTenant);
                 await context.SaveChangesAsync();
 
-                return Results.Redirect($"/user/checkInfo/{newTenant.id}");
+                return Results.Redirect($"/user/checkInfo/{newTenant.Id}");
             });
 
             /* Check yourself user info */
@@ -53,10 +53,10 @@ namespace ImobSystem_API.Controllers
                     return Results.NotFound();
                 }
 
-                tenant.setName(requestUpdateTenant.name);
-                tenant.setEmail(requestUpdateTenant.email);
-                tenant.setPhone(requestUpdateTenant.phone);
-                tenant.setCPF(requestUpdateTenant.cpf);
+                tenant.Name = requestUpdateTenant.name;
+                tenant.Email = requestUpdateTenant.email;
+                tenant.Phone = requestUpdateTenant.phone;
+                tenant.Cpf = requestUpdateTenant.cpf;
 
                 await context.SaveChangesAsync();
 

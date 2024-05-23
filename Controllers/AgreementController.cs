@@ -28,7 +28,7 @@ namespace ImobSystem_API.Controllers
                     requestAddAgreement.House
                     );
 
-                var checkAgreementExists = await context.Agreements.AnyAsync(a => a.id == newAgreement.id);
+                var checkAgreementExists = await context.Agreements.AnyAsync(a => a.Id == newAgreement.Id);
 
                 if (checkAgreementExists)
                 {
@@ -63,7 +63,6 @@ namespace ImobSystem_API.Controllers
                 {
                     return Results.NotFound();
                 }
-
 
                 await context.SaveChangesAsync();
 
