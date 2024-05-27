@@ -1,97 +1,45 @@
 ﻿
+using System.Security.Policy;
+
 namespace ImobSystem_API.Models
 {
     public class House
     {
         #region Properties
-        private uint Id;
-        private string Type;
-        private string Address;
-        private string ZipCode;
+        public uint Id { get; set; }
+        public string Address { get; set; }
+        public uint Rooms { get; set; }
+        public string Type { get; set; }
+        public string ZipCode { get; set; }
         #endregion
 
         #region Section of Relationships
 
         // House - Agreement (One to One)
-        private Agreement Agreement;
+        public Agreement Agreement;
 
         // House - Owner (Many to Many)
-        private ICollection<Owner> Owners = new List<Owner>();
+        public ICollection<Owner> Owners;
         #endregion
 
-        #region Constructor
-        public House(uint id, string address, string zipCode)
+        #region Constructors
+        public House()
         {
-            Id = id;
-            Address = address;
-            ZipCode = zipCode;
-        }
-        #endregion
-
-        #region Get & Set of Properties
-        public uint GetId()
-        {
-            return Id;
+            this.Id = 0;
+            this.Address = this.Type = this.ZipCode = "";
+            this.Rooms = 0;
+            this.Agreement = new Agreement();
+            this.Owners = new List<Owner>();
         }
 
-        public void SetId(uint id)
+        public House(string address, uint rooms, string type, string zipCode)
         {
-            Id = id;
-        }
-
-        public string GetType()
-        {
-            return Type;
-        }
-
-        public void SetType(string type)
-        {
-            Type = type;
-        }
-
-        public string GetAddress()
-        {
-            return Address;
-        }
-
-        public void SetAddress(string address)
-        {
-            Address = address;
-        }
-
-        public string GetZipCode()
-        {
-            return ZipCode;
-        }
-
-        public void SetZipCode(string zipCode)
-        {
-            ZipCode = zipCode;
-        }
-        #endregion
-
-        #region Gets & Sets of Relationships
-
-        // House - Agreement (One to One)
-        public Agreement GetAgreement()
-        {
-            return Agreement;
-        }
-
-        public void SetAgreement(Agreement agreement)
-        {
-            Agreement = agreement;
-        }
-
-        // House - Owner (Many to Many)
-        public ICollection<Owner> GetOwners()
-        {
-            return Owners;
-        }
-
-        public void SetOwners(ICollection<Owner> owners)
-        {
-            Owners = owners;
+            this.Address = address;
+            this.Rooms = rooms;
+            this.Type = type;
+            this.ZipCode = zipCode;
+            this.Agreement = new Agreement();
+            Owners = new List<Owner>();
         }
         #endregion
     }

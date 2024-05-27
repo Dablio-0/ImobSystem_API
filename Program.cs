@@ -1,3 +1,9 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using ImobSystem_API.Data;
+using ImobSystem_API.Controllers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddScoped<AppDbContext>();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
@@ -16,8 +23,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseAuthorization();
+app.UseHttpsRedirection();
 
-app.MapControllers();
+app.MapUserRoutes();
+app.MapHouseRoutes();
+app.MapOwnerRoutes();
+app.MapTenantRoutes();
+app.MapAgreementRoutes();
 
 app.Run();

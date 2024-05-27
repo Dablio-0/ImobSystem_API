@@ -3,115 +3,40 @@
     public class Tenant
     {
         #region Properties
-        private uint Id;
-        private string Name;
-        private string Email;
-        private string Phone;
-        private string CPF;
-        private DateTime CreatedAt;
-        private DateTime UpdatedAt;
+        public uint Id { get; set; }
+        public string Name { get; set; }
+        public DateOnly Age { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Cpf { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
         #endregion
 
         #region  Section of Relationships
         //Tenant - Agreement (Many to Many)
-        private ICollection<Agreement> Agreements = new List<Agreement>();
+        public ICollection<Agreement> Agreements;
         #endregion
 
         #region Constructor
+        public Tenant()
+        {
+            this.Id = 0;
+            this.Name = this.Email = this.Phone = this.Cpf = "";
+            this.CreatedAt = DateTime.Now;
+            this.UpdatedAt = DateTime.Now;
+            this.Agreements = new List<Agreement>();
+        }
+
         public Tenant(string name, string email, string phone, string cpf)
         {
-            Name = name;
-            Email = email;
-            Phone = phone;
-            CPF = cpf;
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
-        }
-        #endregion
-
-        #region Get & Set of Properties
-        public uint GetId()
-        {
-            return this.Id;
-        }
-
-        public void SetId(uint id)
-        {
-            Id = id;
-
-        }
-
-        public string GetName()
-        {
-            return this.Name;
-        }
-
-        public void SetName(string name)
-        {
-            Name = name;
-        }
-
-        public string GetEmail()
-        {
-            return this.Email;
-        }
-
-        public void SetEmail(string email)
-        {
-            Email = email;
-        }
-
-        public string GetPhone()
-        {
-            return this.Phone;
-        }
-
-        public void SetPhone(string phone)
-        {
-            Phone = phone;
-        }
-
-        public string GetCPF()
-        {
-            return this.CPF;
-        }
-
-        public void SetCPF(string cpf)
-        {
-            CPF = cpf;
-        }
-
-        public DateTime GetCreatedAt()
-        {
-            return this.CreatedAt;
-        }
-
-        public void SetCreatedAt(DateTime createdAt)
-        {
-            CreatedAt = createdAt;
-        }
-
-        public DateTime GetUpdatedAt()
-        {
-            return this.UpdatedAt;
-        }
-
-        public void SetUpdatedAt(DateTime updatedAt)
-        {
-            UpdatedAt = updatedAt;
-        }
-        #endregion
-
-        #region Gets & Sets of Relationships
-        // Tenant - House (Many to Many)
-        public ICollection<Agreement> GetAgreements()
-        {
-            return Agreements;
-        }
-
-        public void SetAgreements(ICollection<Agreement> agreements)
-        {
-            Agreements = agreements;
+            this.Name = name;
+            this.Email = email;
+            this.Phone = phone;
+            this.Cpf = cpf;
+            this.CreatedAt = DateTime.Now;
+            this.UpdatedAt = DateTime.Now;
+            Agreements = new List<Agreement>();
         }
         #endregion
     }

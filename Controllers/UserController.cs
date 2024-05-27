@@ -1,96 +1,88 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ImobSystem_API.Models;
+using ImobSystem_API.DTOs.User;
+using ImobSystem_API.Data;
 
 namespace ImobSystem_API.Controllers
 {
-    public class UserController : ControllerBase
+    public static class UserController
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
-
-        public UserController(UserManager<User> userManager, SignInManager<User> signInManager)
+        /* Create User */
+        public static void MapUserRoutes(this WebApplication app)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
+            /* Prefix User Route */
+            var groupUser = app.MapGroup("user");
+
+            /* Create User */
+            groupUser.MapPost("/create", async (AddUserRequest requestAddUser, AppDbContext context) =>
+            {
+                var newUser = new User(requestAddUser.name, requestAddUser.email, requestAddUser.password);
+
+                var checkUserExists = await context.Users.AnyAsync(u => u.Email == newUser.Email);
+
+                if (checkUserExists)
+                {
+                    return Results.BadRequest("User already exists");
+                }
+
+                await context.Users.AddAsync(newUser);
+                await context.SaveChangesAsync();
+
+                return Results.Ok();
+            });
+
+            /* Check yourself user info */
+            groupUser.MapGet("/checkInfo/{id}", async (uint id, AppDbContext context) =>
+            {
+                var user = await context.Users.FindAsync(id);
+
+                if (user == null)
+                {
+                    return Results.NotFound();
+                }
+
+                return Results.Ok(user);
+            });
+
+            /* Update User */
+            groupUser.MapPut("/update/{id}", async (uint id, UpdateUserRequest requestUpdateUser, AppDbContext context) =>
+            {
+                var user = await context.Users.FindAsync(id);
+
+                if (user == null)
+                {
+                    return Results.NotFound();
+                }
+
+                user.Name = requestUpdateUser.name;
+                user.Email = requestUpdateUser.email;
+                user.Password = requestUpdateUser.password;
+                user.Age = requestUpdateUser.age;
+
+                await context.SaveChangesAsync();
+
+                return Results.Ok(user);
+            });
+
+            /* Delete User */
+            groupUser.MapDelete("/delete/{id}", async (uint id, AppDbContext context) =>
+            {
+                var user = await context.Users.FindAsync(id);
+
+                if (user == null)
+                {
+                    return Results.NotFound("User not found");
+                }
+
+                context.Users.Remove(user);
+                await context.SaveChangesAsync();
+
+                return Results.Ok();
+            });
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Register(User user)
-        {
-            var result = await _userManager.CreateAsync(user, user.GetPassword());
-            if (result.Succeeded)
-            {
-                await _signInManager.SignInAsync(user, false);
-                return Ok();
-            }
-            return BadRequest();
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> Login(User user)
-        {
-            var result = await _signInManager.PasswordSignInAsync(user.GetEmail(), user.GetPassword(), false, false);
-            if (result.Succeeded)
-            {
-                return Ok();
-            }
-            return BadRequest();
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> Logout()
-        {
-            await _signInManager.SignOutAsync();
-            return Ok();
-        }
-
-        [HttpGet]
-        public async Task<ActionResult> GetCurrentUser()
-        {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return Unauthorized();
-            }
-            return Ok(user);
-        }
-
-        [HttpPut]
-        public async Task<ActionResult> UpdateUser(User user)
-        {
-            var currentUser = await _userManager.GetUserAsync(User);
-            if (currentUser == null)
-            {
-                return Unauthorized();
-            }
-            currentUser.SetName(user.GetName());
-            currentUser.SetEmail(user.GetEmail());
-            currentUser.SetPassword(user.GetPassword());
-            var result = await _userManager.UpdateAsync(currentUser);
-            if (result.Succeeded)
-            {
-                return Ok();
-            }
-            return BadRequest();
-        }
-
-        [HttpDelete]
-        public async Task<ActionResult> DeleteUser()
-        {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return Unauthorized();
-            }
-            var result = await _userManager.DeleteAsync(user);
-            if (result.Succeeded)
-            {
-                return Ok();
-            }
-            return BadRequest();
-        }
     }
 }

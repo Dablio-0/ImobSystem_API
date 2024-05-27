@@ -1,94 +1,35 @@
-﻿namespace ImobSystem_API.Models
+﻿using System.Numerics;
+using System.Security.Cryptography;
+
+namespace ImobSystem_API.Models
 {
     public class User
     {
         #region Properties
-        private uint Id;
-        private string Name;
-        private string Email;
-        private string Password;
-        private DateOnly Age;
-        private DateTime CreatedAt;
-        private DateTime UpdatedAt;
+        public uint Id { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public DateOnly Age { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
         #endregion
 
         #region Constructor
-        public User(string name, string email, string password, DateOnly age)
+        public User()
         {
-            Name = name;
-            Email = email;
-            Password = password;
-            Age = age;
-            CreatedAt = DateTime.Now;
-        }
-        #endregion
-
-        #region Get & Set of Properties
-        public uint GetId()
-        {
-            return this.Id;
+            this.Name = this.Email = this.Password = "";
+            this.CreatedAt = DateTime.Now;
+            this.UpdatedAt = DateTime.Now;
         }
 
-        public void SetId(uint id)
+        public User(string name, string email, string password)
         {
-            Id = id;
-        }
-
-        public string GetName()
-        {
-            return this.Name;
-        }
-
-        public void SetName(string name)
-        {
-            Name = name;
-        }
-
-        public string GetEmail()
-        {
-            return this.Email;
-        }
-
-        public void SetEmail(string email)
-        {
-            Email = email;
-        }
-
-        public string GetPassword()
-        {
-            return this.Password;
-        }
-
-        public void SetPassword(string password)
-        {
-            Password = password;
-        }
-
-        public DateOnly GetAge()
-        {
-            return this.Age;
-        }
-
-        public void SetAge(DateOnly age)
-        {
-            Age = age;
-        }
-        #endregion
-
-        #region Get the date and time when the user was created
-        public DateTime GetCreatedAt()
-        {
-            return this.CreatedAt;
-        }
-
-        public DateTime GetUpdatedAt()
-        {
-            return this.UpdatedAt;
-        }
-
-        public void SetUpdatedAt(DateTime updatedAt)
-        {
-            UpdatedAt = updatedAt;
+            this.Name = name;
+            this.Email = email;
+            this.Password = password;
+            this.CreatedAt = DateTime.Now;
+            this.UpdatedAt = DateTime.Now;
         }
         #endregion
     }
