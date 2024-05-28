@@ -16,6 +16,10 @@
         #region  Section of Relationships
         //Tenant - Agreement (Many to Many)
         public ICollection<Agreement> Agreements;
+
+        // Get the user that manipulated the agreement
+        public uint UserId { get; set; }
+        public User User { get; set; }
         #endregion
 
         #region Constructor
@@ -26,6 +30,7 @@
             this.CreatedAt = DateTime.Now;
             this.UpdatedAt = DateTime.Now;
             this.Agreements = new List<Agreement>();
+            this.User = new User();
         }
 
         public Tenant(string name, string email, string phone, string cpf)
@@ -37,6 +42,7 @@
             this.CreatedAt = DateTime.Now;
             this.UpdatedAt = DateTime.Now;
             Agreements = new List<Agreement>();
+            this.User = new User();
         }
         #endregion
     }

@@ -23,16 +23,21 @@ namespace ImobSystem_API.Models
 
         #region Section of Relationships 
         // Agreement - House (One to One)
-        public House House;
+        public uint HouseId { get; set; }
+        public House House { get; set; }
 
         // Agreement - Tenant (Many to Many)
-        public ICollection<Tenant> Tenants;
+        public uint TenantId { get; set; }
+        public ICollection<Tenant> Tenants { get; set; }
+
+        // Get the user that manipulated the agreement
+        public uint UserId { get; set; }
+        public User User { get; set; }
         #endregion
 
         #region Constructors
         public Agreement()
         {
-            this.Id = 0;
             this.Owner = this.Tenant = this.Description = this.ValueAgreement = "";
             this.NumInstallments = 0;
             this.Status = false;
@@ -43,6 +48,7 @@ namespace ImobSystem_API.Models
             this.PeriodAgreement = Convert.ToDateTime("00:00:00");
             this.House = new House();
             this.Tenants = new List<Tenant>();
+            this.User = new User();
         }
 
         public Agreement(
@@ -77,6 +83,7 @@ namespace ImobSystem_API.Models
 
             this.House = House;
             this.Tenants = new List<Tenant>();
+            this.User = new User();
         }
         #endregion
 

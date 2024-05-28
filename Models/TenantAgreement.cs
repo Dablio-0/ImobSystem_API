@@ -10,19 +10,24 @@ namespace ImobSystem_API.Models
         public uint HouseId { get; set; }
         public House House { get; set; }
 
+        public uint UserId { get; set; }
+        public User User { get; set; }
+
         public TenantAgreement()
         {
-            this.TenantId = this.HouseId = 0;
-            Tenant = new Tenant();
-            House = new House();
+            this.Tenant = new Tenant();
+            this.House = new House();
+            this.User = new User();
         }
 
-        public TenantAgreement(uint tenantId, uint houseId)
+        public TenantAgreement(uint tenantId, uint houseId, uint userId)
         {
-            TenantId = tenantId;
-            HouseId = houseId;
-            Tenant = new Tenant();
-            House = new House();
+            this.TenantId = tenantId;
+            this.HouseId = houseId;
+            this.UserId = userId;
+            this.Tenant = new Tenant();
+            this.House = new House();
+            this.User = new User();
         }
     }
 }

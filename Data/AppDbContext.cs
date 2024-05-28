@@ -73,6 +73,8 @@ namespace ImobSystem_API.Data
             //    .HasForeignKey(ho => ho.OwnerId);
 
             base.OnModelCreating(modelBuilder);
+
+
         }
     }
 }

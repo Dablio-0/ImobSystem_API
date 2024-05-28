@@ -16,16 +16,20 @@
         #region Section of Relationships 
         // Owner - House (Many to Many)
         public ICollection<House> Houses;
+
+        // Get the user that manipulated the agreement
+        public uint UserId { get; set; }
+        public User User { get; set; }
         #endregion
 
         #region Constructor
         public Owner()
         {
-            this.Id = 0;
             this.Name = this.Email = this.Phone = this.Cpf = "";
             this.CreatedAt = DateTime.Now;
             this.UpdatedAt = DateTime.Now;
-            Houses = new List<House>();
+            this.Houses = new List<House>();
+            this.User = new User();
         }
 
         public Owner(string name, string email, string phone, string cpf)
@@ -36,7 +40,8 @@
             this.Cpf = cpf;
             this.CreatedAt = DateTime.Now;
             this.UpdatedAt = DateTime.Now;
-            Houses = new List<House>();
+            this.Houses = new List<House>();
+            this.User = new User();
         }
         #endregion
     }

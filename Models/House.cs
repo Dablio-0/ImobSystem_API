@@ -20,6 +20,10 @@ namespace ImobSystem_API.Models
 
         // House - Owner (Many to Many)
         public ICollection<Owner> Owners;
+
+        // Get the user that manipulated the agreement
+        public uint UserId { get; set; }
+        public User User { get; set; }
         #endregion
 
         #region Constructors
@@ -30,6 +34,7 @@ namespace ImobSystem_API.Models
             this.Rooms = 0;
             this.Agreement = new Agreement();
             this.Owners = new List<Owner>();
+            this.User = new User();
         }
 
         public House(string address, uint rooms, string type, string zipCode)
@@ -39,7 +44,8 @@ namespace ImobSystem_API.Models
             this.Type = type;
             this.ZipCode = zipCode;
             this.Agreement = new Agreement();
-            Owners = new List<Owner>();
+            this.Owners = new List<Owner>();
+            this.User = new User();
         }
         #endregion
     }
