@@ -13,6 +13,10 @@ namespace ImobSystem_API.Models
         public DateOnly Age { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public ICollection<Agreement> Agreements { get; set; }
+        public ICollection<House> Houses { get; set; }
+        public ICollection<Owner> Owners { get; set; }
+        public ICollection<Tenant> Tenants { get; set; }
         #endregion
 
         #region Constructor
@@ -21,6 +25,11 @@ namespace ImobSystem_API.Models
             this.Name = this.Email = this.Password = "";
             this.CreatedAt = DateTime.Now;
             this.UpdatedAt = DateTime.Now;
+            this.Agreements = new List<Agreement>();
+            this.Houses = new List<House>();
+            this.Owners = new List<Owner>();
+            this.Tenants = new List<Tenant>();
+
         }
 
         public User(string name, string email, string password)
@@ -30,6 +39,10 @@ namespace ImobSystem_API.Models
             this.Password = password;
             this.CreatedAt = DateTime.Now;
             this.UpdatedAt = DateTime.Now;
+            this.Agreements = new List<Agreement>();
+            this.Houses = new List<House>();
+            this.Owners = new List<Owner>();
+            this.Tenants = new List<Tenant>();
         }
         #endregion
     }

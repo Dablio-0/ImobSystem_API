@@ -39,6 +39,29 @@ namespace ImobSystem_API.Data
                 .HasOne(h => h.Agreement)
                 .WithOne(a => a.House)
                 .HasForeignKey<House>(h => h.Id);
+            /**
+             * One to Many Relations
+             */
+            // UserId in models
+            modelBuilder.Entity<Agreement>()
+            .HasOne(a => a.User)
+            .WithMany(u => u.Agreements)
+            .HasForeignKey(a => a.UserId);
+
+            modelBuilder.Entity<House>()
+                .HasOne(h => h.User)
+                .WithMany(u => u.Houses)
+                .HasForeignKey(h => h.UserId);
+
+            modelBuilder.Entity<Owner>()
+                .HasOne(o => o.User)
+                .WithMany(u => u.Owners)
+                .HasForeignKey(o => o.UserId);
+
+            modelBuilder.Entity<Tenant>()
+                .HasOne(t => t.User)
+                .WithMany(u => u.Tenants)
+                .HasForeignKey(t => t.UserId);
 
             /**
              * Many to Many Relations
