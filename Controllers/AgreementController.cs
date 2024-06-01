@@ -88,13 +88,27 @@ namespace ImobSystem_API.Controllers
             /* Get Active Agreement List */
             groupAgreement.MapGet("/checkActiveAgreements/${idUser}", async (uint idUser, AppDbContext context) =>
             {
+                var user = await context.Agreements.Where(i => i.Status == true).ToListAsync();
 
+                if (user == null)
+                {
+                    return Results.NotFound();
+                }
+
+                return Results.Ok(user);
             });
 
             /* Get Inactive Agreement List */
             groupAgreement.MapGet("/checkInactiveAgreements/${idUser}", async (uint idUser, AppDbContext context) =>
             {
+                var user = await context.Agreements.Where(i => i.Status == false).ToListAsync();
 
+                if (user == null)
+                {
+                    return Results.NotFound();
+                }
+
+                return Results.Ok(user);
             });
         }
     }
