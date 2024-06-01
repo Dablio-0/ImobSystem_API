@@ -88,7 +88,14 @@ namespace ImobSystem_API.Controllers
 
             groupHouse.MapGet("/checkTenants/${idUser}", async (uint idUser, AppDbContext context) =>
             {
+                var user = await context.Houses.Where(i => i.idUser == idUser).ToListAsync();
 
+                if (user == null)
+                {
+                    return Results.NotFound();
+                }
+
+                return Results.Ok(user);
             });
         }
     }
