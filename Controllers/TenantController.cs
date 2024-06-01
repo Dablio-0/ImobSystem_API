@@ -27,7 +27,7 @@ namespace ImobSystem_API.Controllers
                 await context.Tenants.AddAsync(newTenant);
                 await context.SaveChangesAsync();
 
-                return Results.Redirect($"/user/checkInfo/{newTenant.Id}");
+                return Results.Ok();
             });
 
             /* Check yourself user info */
@@ -80,7 +80,7 @@ namespace ImobSystem_API.Controllers
             });
 
             /* Get Tenant List */
-            groupTenant.MapGet("/checkTenants/${idUser}", async (uint idUser, AppDbContext context) =>
+            groupTenant.MapGet("/checkTenants/{idUser}", async (uint idUser, AppDbContext context) =>
             {
 
             });

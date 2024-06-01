@@ -32,7 +32,7 @@ namespace ImobSystem_API.Controllers
                 await context.Houses.AddAsync(newHouse);
                 await context.SaveChangesAsync();
 
-                return Results.Redirect($"/checkInfo/{newHouse.Id}");
+                return Results.Ok();
             });
             #endregion
 
@@ -86,7 +86,7 @@ namespace ImobSystem_API.Controllers
             });
             #endregion
 
-            groupHouse.MapGet("/checkTenants/${idUser}", async (uint idUser, AppDbContext context) =>
+            groupHouse.MapGet("/checkTenants/{idUser}", async (uint idUser, AppDbContext context) =>
             {
 
             });

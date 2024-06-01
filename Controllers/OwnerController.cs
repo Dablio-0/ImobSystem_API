@@ -27,7 +27,7 @@ namespace ImobSystem_API.Controllers
                 await context.Owners.AddAsync(newOwner);
                 await context.SaveChangesAsync();
 
-                return Results.Redirect($"/user/checkInfo/{newOwner.Id}");
+                return Results.Ok();
             });
 
             /* Check yourself user info */
@@ -80,7 +80,7 @@ namespace ImobSystem_API.Controllers
             });
 
             /* Get Owner List */
-            groupOwner.MapGet("/checkOwners/${idUser}", async (uint idUser, AppDbContext context) =>
+            groupOwner.MapGet("/checkOwners/{idUser}", async (uint idUser, AppDbContext context) =>
             {
 
             });
