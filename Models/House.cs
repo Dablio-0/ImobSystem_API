@@ -11,6 +11,7 @@ namespace ImobSystem_API.Models
         public uint Rooms { get; set; }
         public string Type { get; set; }
         public string ZipCode { get; set; }
+        public uint IdUser { get; set; }
         #endregion
 
         #region Section of Relationships

@@ -14,6 +14,7 @@ namespace ImobSystem_API.Models
         public string ValueAgreement { get; set; }
         public uint NumInstallments { get; set; }
         public bool Status { get; set; }
+        public uint IdUser { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdateAt { get; set; }
         public DateTime InitDateAgreement { get; set; }
