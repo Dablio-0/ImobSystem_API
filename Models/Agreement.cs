@@ -57,6 +57,7 @@ namespace ImobSystem_API.Models
             string description,
             string valueAgreement,
             uint numInstallments,
+            bool status,
             DateTime updatedAt,
             DateTime initDateAgreement,
             DateTime finalDateAgreement,
@@ -68,7 +69,7 @@ namespace ImobSystem_API.Models
             this.Description = description;
             this.ValueAgreement = valueAgreement;
             this.NumInstallments = numInstallments.ToString() == "" ? 0 : numInstallments;
-            this.Status = false;
+            this.Status = status;
             this.CreatedAt = DateTime.Now;
             this.UpdateAt = updatedAt;
             this.InitDateAgreement = initDateAgreement;

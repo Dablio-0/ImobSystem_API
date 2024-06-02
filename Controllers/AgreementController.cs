@@ -22,6 +22,7 @@ namespace ImobSystem_API.Controllers
                     requestAddAgreement.description,
                     requestAddAgreement.valueAgreement,
                     requestAddAgreement.numInstallments,
+                    requestAddAgreement.status,
                     requestAddAgreement.updateAt,
                     requestAddAgreement.initDateAgreement,
                     requestAddAgreement.finalDateAgreement,
