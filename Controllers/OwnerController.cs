@@ -80,9 +80,16 @@ namespace ImobSystem_API.Controllers
             });
 
             /* Get Owner List */
-            groupOwner.MapGet("/checkOwners/{idUser}", async (uint idUser, AppDbContext context) =>
+            groupOwner.MapGet("/checkOwners/${UserId}", async (uint UserId, AppDbContext context) =>
             {
+                var user = await context.Owners.Where(i => i.UserId == UserId).ToListAsync();
 
+                if (user == null)
+                {
+                    return Results.NotFound();
+                }
+
+                return Results.Ok(user);
             });
         }
     }

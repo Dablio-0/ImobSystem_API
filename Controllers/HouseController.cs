@@ -86,10 +86,18 @@ namespace ImobSystem_API.Controllers
             });
             #endregion
 
-            groupHouse.MapGet("/checkTenants/{idUser}", async (uint idUser, AppDbContext context) =>
+            groupHouse.MapGet("/checkTenants/${UserId}", async (uint UserId, AppDbContext context) =>
             {
+                var user = await context.Houses.Where(i => i.UserId == UserId).ToListAsync();
 
+                if (user == null)
+                {
+                    return Results.NotFound();
+                }
+
+                return Results.Ok(user);
             });
+
         }
     }
 }

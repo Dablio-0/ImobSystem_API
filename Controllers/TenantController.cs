@@ -80,9 +80,16 @@ namespace ImobSystem_API.Controllers
             });
 
             /* Get Tenant List */
-            groupTenant.MapGet("/checkTenants/{idUser}", async (uint idUser, AppDbContext context) =>
+            groupTenant.MapGet("/checkTenants/${UserId}", async (uint UserId, AppDbContext context) =>
             {
+                var user = await context.Tenants.Where(i => i.UserId == UserId).ToListAsync();
 
+                if (user == null)
+                {
+                    return Results.NotFound();
+                }
+
+                return Results.Ok(user);
             });
         }
     }
